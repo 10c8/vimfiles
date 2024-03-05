@@ -21,7 +21,7 @@ return {
     vim.keymap.set({ 'n', 'x' }, '<leader>t]', '<cmd>FloatermNext<CR>', { desc = 'Cycle to the next terminal' })
     vim.keymap.set({ 'n', 'x' }, '<leader>tg', function()
       vim.g.floaterm_autoinsert = true
-      vim.cmd 'FloatermNew --name=Lazygit --title=Lazygit --width=0.8 --height=0.8 --position=center --autoclose=2 lazygit'
+      vim.cmd 'FloatermNew --name=Lazygit --title=Lazygit --width=0.9 --height=0.9 --position=center --autoclose=2 lazygit'
       vim.g.floaterm_autoinsert = false
     end, { desc = 'Open the Lazy[g]it terminal' })
 

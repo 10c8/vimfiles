@@ -62,12 +62,7 @@ vim.g.inlay_hints_visible = true
 
 -- [[ Neovide ]]
 if vim.g.neovide then
-  vim.o.guifont = 'FiraCode NF:h9'
-
-  -- vim.g.neovide_padding_top = 4
-  -- vim.g.neovide_padding_bottom = 0
-  -- vim.g.neovide_padding_left = 4
-  -- vim.g.neovide_padding_right = 4
+  vim.o.guifont = 'FiraCode Nerd Font Mono:h9'
 
   vim.g.neovide_cursor_animation_length = 0.03
   vim.g.neovide_cursor_trail_size = 0.8

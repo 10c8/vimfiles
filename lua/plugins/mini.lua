@@ -32,7 +32,7 @@ return {
     require('mini.move').setup()
 
     -- Tabline
-    require('mini.tabline').setup()
+    -- require('mini.tabline').setup()
 
     -- Minimap
     local map = require 'mini.map'

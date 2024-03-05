@@ -1,9 +1,11 @@
 return {
   'nvim-tree/nvim-tree.lua',
   config = function()
-    require('nvim-tree').setup {
+    local tree = require 'nvim-tree'
+
+    tree.setup {
       filters = {
-        custom = { "^.git$" }, -- Hide the .git directory
+        custom = { '^.git$' }, -- Hide the .git directory
       },
       renderer = {
         icons = {
@@ -14,13 +16,13 @@ return {
           },
           glyphs = {
             git = {
-              unstaged = "✗",
-              staged = "✓",
-              unmerged = "⌥",
-              renamed = "➜",
-              untracked = "★",
-              deleted = "⊖",
-              ignored = "◌",
+              unstaged = '✗',
+              staged = '✓',
+              unmerged = '⌥',
+              renamed = '➜',
+              untracked = '★',
+              deleted = '⊖',
+              ignored = '◌',
             },
           },
         },
@@ -29,5 +31,5 @@ return {
 
     -- [[ Keymaps ]]
     vim.keymap.set('n', '<C-b>', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle the file [B]rowser' })
-  end
+  end,
 }

@@ -14,6 +14,7 @@ return {
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
+    { 'zbirenbaum/copilot-cmp', opts = {} },
     -- 'rafamadriz/friendly-snippets',
   },
   config = function()
@@ -38,10 +39,13 @@ return {
         -- Select the [p]revious item
         ['<C-k>'] = cmp.mapping.select_prev_item(),
 
-        -- Accept ([y]es) the completion.
+        -- Accept ([y]es) the completion
         ['<CR>'] = cmp.mapping.confirm { select = true },
 
-        -- Manually trigger a completion from nvim-cmp.
+        -- Close the completion menu
+        ['<ESC>'] = cmp.mapping.close(),
+
+        -- Manually trigger a completion from nvim-cmp
         ['<C-Space>'] = cmp.mapping.complete(),
 
         -- Scrolling
@@ -61,6 +65,7 @@ return {
         end, { 'i', 's' }),
       },
       sources = {
+        { name = 'copilot' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
