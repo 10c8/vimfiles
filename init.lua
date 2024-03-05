@@ -57,6 +57,30 @@ vim.opt.inccommand = 'split'
 -- Termguicolors
 vim.opt.termguicolors = true
 
+-- Inlay hints
+vim.g.inlay_hints_visible = true
+
+-- [[ Neovide ]]
+if vim.g.neovide then
+  vim.o.guifont = 'FiraCode NF:h9'
+
+  -- vim.g.neovide_padding_top = 4
+  -- vim.g.neovide_padding_bottom = 0
+  -- vim.g.neovide_padding_left = 4
+  -- vim.g.neovide_padding_right = 4
+
+  vim.g.neovide_cursor_animation_length = 0.03
+  vim.g.neovide_cursor_trail_size = 0.8
+
+  -- Keymaps
+  vim.keymap.set('v', '<C-c>', '"+y', { desc = 'Copy to clipboard' })
+
+  vim.api.nvim_set_keymap('', '<C-v>', '+p<CR>', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('!', '<C-v>', '<C-R>+', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('i', '<C-v>', '<C-R>+', { noremap = true, silent = true })
+  vim.api.nvim_set_keymap('v', '<C-v>', '<C-R>+', { noremap = true, silent = true })
+end
+
 -- [[ Keymaps ]]
 -- Highlight on search, clear on escape
 vim.opt.hlsearch = true
@@ -88,7 +112,8 @@ vim.keymap.set('n', '<C-t>', function()
       map('i', '<CR>', function(prompt_bufnr)
         local entry = require('telescope.actions.state').get_selected_entry()
         require('telescope.actions').close(prompt_bufnr)
-        vim.api.nvim_command('edit ' .. entry.path)
+
+        vim.cmd('edit ' .. entry.path)
       end)
 
       return true
@@ -102,9 +127,6 @@ vim.keymap.set('n', '<S-TAB>', '<cmd>bp<CR>', { desc = 'Switch to the previous b
 -- Splits
 vim.keymap.set('n', '<leader>Sw', '<cmd>split<CR>', { desc = 'Split the window horizontally' })
 vim.keymap.set('n', '<leader>Sv', '<cmd>vsplit<CR>', { desc = 'Split the window vertically' })
-
--- Terminal
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- [[ Autocommands ]]
 -- Highlight yanked text

@@ -34,19 +34,19 @@ return {
       -- see `:help ins-completion`
       mapping = cmp.mapping.preset.insert {
         -- Select the [n]ext item
-        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
         -- Select the [p]revious item
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
 
         -- Accept ([y]es) the completion.
-        ['<C-y>'] = cmp.mapping.confirm { select = true },
+        ['<CR>'] = cmp.mapping.confirm { select = true },
 
         -- Manually trigger a completion from nvim-cmp.
         ['<C-Space>'] = cmp.mapping.complete(),
 
         -- Scrolling
-        ['<C-j>'] = cmp.mapping.scroll_docs(4),
-        ['<C-k>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-n>'] = cmp.mapping.scroll_docs(4),
+        ['<C-p>'] = cmp.mapping.scroll_docs(-4),
 
         -- Snippet navigation
         ['<C-l>'] = cmp.mapping(function()
