@@ -25,7 +25,7 @@ return {
         -- Jump to the definition of the word under your cursor.
         --  This is where a variable was first declared, or where a function is defined, etc.
         --  To jump back, press <C-T>.
-        map('gd', telescope.lsp_definitions, '[g]oto [d]efinition')
+        map('gdd', telescope.lsp_definitions, '[g]oto [d]efinition')
 
         -- Find references for the word under your cursor.
         map('gr', telescope.lsp_references, '[g]oto [r]eferences')
@@ -121,7 +121,6 @@ return {
     vim.list_extend(ensure_installed, {
       'clangd',
       'clang-format',
-      'codelldb',
       'stylua',
       'taplo',
     })

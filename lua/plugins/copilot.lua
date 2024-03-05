@@ -3,7 +3,13 @@ return {
   event = 'InsertEnter',
   config = function()
     require('copilot').setup {
-      suggestion = { enabled = false },
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        keymap = {
+          accept = '<TAB>',
+        },
+      },
       panel = { enabled = false },
       filetypes = {
         help = false,

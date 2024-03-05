@@ -38,15 +38,16 @@ return {
     -- [[ Keymaps ]]
     -- see `:help telescope.builtin`
     local telescope = require 'telescope.builtin'
-    vim.keymap.set('n', '<leader>sh', telescope.help_tags, { desc = '[S]earch [H]elp' })
-    vim.keymap.set('n', '<leader>sk', telescope.keymaps, { desc = '[S]earch [K]eymaps' })
-    vim.keymap.set('n', '<leader>sf', telescope.find_files, { desc = '[S]earch [F]iles' })
-    vim.keymap.set('n', '<leader>ss', telescope.builtin, { desc = '[S]earch [S]elect Telescope' })
-    vim.keymap.set('n', '<leader>sw', telescope.grep_string, { desc = '[S]earch current [W]ord' })
-    vim.keymap.set('n', '<leader>sg', telescope.live_grep, { desc = '[S]earch by [G]rep' })
-    vim.keymap.set('n', '<leader>sd', telescope.diagnostics, { desc = '[S]earch [D]iagnostics' })
-    vim.keymap.set('n', '<leader>sr', telescope.resume, { desc = '[S]earch [R]esume' })
-    vim.keymap.set('n', '<leader>s.', telescope.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+    vim.keymap.set('n', '<leader>sh', telescope.help_tags, { desc = '[s]earch [h]elp' })
+    vim.keymap.set('n', '<leader>sk', telescope.keymaps, { desc = '[s]earch [k]eymaps' })
+    vim.keymap.set('n', '<leader>sf', telescope.find_files, { desc = '[s]earch [f]iles' })
+    vim.keymap.set('n', '<leader>ss', telescope.builtin, { desc = '[s]earch [s]elect Telescope' })
+    vim.keymap.set('n', '<leader>sw', telescope.grep_string, { desc = '[s]earch current [w]ord' })
+    vim.keymap.set('n', '<leader>sg', telescope.live_grep, { desc = '[s]earch by [g]rep' })
+    vim.keymap.set('n', '<leader>sd', telescope.diagnostics, { desc = '[s]earch [d]iagnostics' })
+    vim.keymap.set('n', '<leader>sc', '<CMD>Telescope neoclip<CR>', { desc = '[s]earch [c]lipboard' })
+    vim.keymap.set('n', '<leader>sr', telescope.resume, { desc = '[s]earch [r]esume' })
+    vim.keymap.set('n', '<leader>s.', telescope.oldfiles, { desc = '[s]earch Recent Files ("." for repeat)' })
     vim.keymap.set('n', '<leader><leader>', telescope.buffers, { desc = '[ ] Find existing buffers' })
 
     vim.keymap.set('n', '<leader>/', function()

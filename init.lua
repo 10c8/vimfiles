@@ -1,5 +1,5 @@
 -- Language
-vim.api.nvim_exec('language en_US', false)
+vim.cmd 'language en_US'
 
 -- [[ Options ]]
 -- Leader key
@@ -81,10 +81,9 @@ end
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<ESC>', '<cmd>nohlsearch<CR>')
 
--- CTRL+S to save
--- vim.keymap.set('n', '<C-s>', '<c-u><cmd>update<CR>', { desc = 'Save the current file', remap = true })
--- vim.keymap.set('v', '<C-s>', '<c-c><cmd>update<CR>gv', { desc = 'Save the current file', remap = true })
--- vim.keymap.set('i', '<C-s>', '<c-o><cmd>update<CR>', { desc = 'Save the current file', remap = true })
+-- Motions
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true, desc = 'Move half page up' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true, desc = 'Move half page down' })
 
 -- Diagnostic navigation
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
@@ -131,6 +130,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('yank-highlight', { clear = true }),
   callback = vim.highlight.on_yank,
 })
+
+-- Close neovide channel on exit
+-- https://github.com/neovide/neovide/pull/2130
+-- vim.api.nvim_create_autocmd('VimLeave', {
+--   pattern = '*',
+--   once = true,
+--   nested = true,
+--   callback = function()
+--     vim.fn.chanclose(vim.g.neovide_channel_id)
+--   end,
+-- })
 
 -- [[ Plugins ]]
 -- Install lazy.nvim

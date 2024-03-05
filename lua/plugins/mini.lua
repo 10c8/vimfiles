@@ -31,8 +31,15 @@ return {
     -- Move lines and blocks of text
     require('mini.move').setup()
 
-    -- Tabline
-    -- require('mini.tabline').setup()
+    -- Files
+    local files = require 'mini.files'
+    files.setup {
+      content = {
+        filter = function(fs_entry)
+          return fs_entry ~= '.git' -- Hide `.git` directory
+        end,
+      },
+    }
 
     -- Minimap
     local map = require 'mini.map'
@@ -53,6 +60,14 @@ return {
     }
 
     -- [[ Keymaps ]]
+    -- Open mini files explorer
+    vim.keymap.set('', '<C-b>', function()
+      if not files.close() then
+        files.open()
+      end
+    end, { desc = 'Open file {b}rowser' })
+
+    -- Minimap
     vim.keymap.set('n', '<leader>mm', map.toggle, { desc = 'Toggle [M]ini [M]ap' })
     vim.keymap.set('n', '<leader>mc', map.close, { desc = '[M]inimap [C]lose' })
     vim.keymap.set('n', '<leader>mf', map.toggle_focus, { desc = 'Toggle [M]inimap [F]ocus' })
@@ -64,7 +79,9 @@ return {
     vim.api.nvim_create_autocmd('VimEnter', {
       desc = 'Open minimap on VimEnter',
       group = vim.api.nvim_create_augroup('minimap-vimenter', { clear = true }),
-      callback = map.open,
+      callback = function()
+        map.open()
+      end,
     })
   end,
 }

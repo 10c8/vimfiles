@@ -14,7 +14,7 @@ return {
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
-    { 'zbirenbaum/copilot-cmp', opts = {} },
+    -- { 'zbirenbaum/copilot-cmp', opts = {} },
     -- 'rafamadriz/friendly-snippets',
   },
   config = function()
@@ -43,7 +43,7 @@ return {
         ['<CR>'] = cmp.mapping.confirm { select = true },
 
         -- Close the completion menu
-        ['<ESC>'] = cmp.mapping.close(),
+        ['<C-e>'] = cmp.mapping.close(),
 
         -- Manually trigger a completion from nvim-cmp
         ['<C-Space>'] = cmp.mapping.complete(),
@@ -65,7 +65,7 @@ return {
         end, { 'i', 's' }),
       },
       sources = {
-        { name = 'copilot' },
+        -- { name = 'copilot' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
