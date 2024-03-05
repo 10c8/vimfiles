@@ -116,6 +116,7 @@ vim.keymap.set('n', '<C-t>', function()
   }
 end, { desc = 'Edit a file in a new buffer' })
 vim.keymap.set('n', '<C-w>', '<cmd>bd<CR>', { desc = 'Close the current buffer' })
+vim.keymap.set('n', '<C-S-w>', '<cmd>bd!<CR>', { desc = 'Close the current buffer (force)' })
 vim.keymap.set('n', '<TAB>', '<cmd>bn<CR>', { desc = 'Switch to the next buffer' })
 vim.keymap.set('n', '<S-TAB>', '<cmd>bp<CR>', { desc = 'Switch to the previous buffer' })
 
