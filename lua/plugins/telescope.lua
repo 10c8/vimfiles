@@ -47,7 +47,7 @@ return {
     vim.keymap.set('n', '<leader>sd', telescope.diagnostics, { desc = '[s]earch [d]iagnostics' })
     vim.keymap.set('n', '<leader>sc', '<CMD>Telescope neoclip<CR>', { desc = '[s]earch [c]lipboard' })
     vim.keymap.set('n', '<leader>sr', telescope.resume, { desc = '[s]earch [r]esume' })
-    vim.keymap.set('n', '<leader>s.', telescope.oldfiles, { desc = '[s]earch Recent Files ("." for repeat)' })
+    vim.keymap.set('n', '<leader>s.', telescope.oldfiles, { desc = '[s]earch recent files ("." for repeat)' })
     vim.keymap.set('n', '<leader><leader>', telescope.buffers, { desc = '[ ] Find existing buffers' })
 
     vim.keymap.set('n', '<leader>/', function()
@@ -55,7 +55,7 @@ return {
         winblend = 10,
         previewer = false,
       })
-    end, { desc = '[/] Fuzzily search in current buffer' })
+    end, { desc = '[/] Fuzzy search in current buffer' })
 
     -- see `:help telescope.builtin.live_grep()`
     vim.keymap.set('n', '<leader>s/', function()
@@ -63,10 +63,10 @@ return {
         grep_open_files = true,
         prompt_title = 'Live Grep in Open Files',
       }
-    end, { desc = '[S]earch [/] in Open Files' })
+    end, { desc = '[s]earch [/] in open files' })
 
     vim.keymap.set('n', '<leader>sn', function()
       telescope.find_files { cwd = vim.fn.stdpath 'config' }
-    end, { desc = '[S]earch [N]eovim files' })
+    end, { desc = '[s]earch [s]eovim files' })
   end,
 }
