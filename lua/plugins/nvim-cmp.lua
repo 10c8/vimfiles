@@ -34,13 +34,13 @@ return {
       -- [[ Keymaps ]]
       -- see `:help ins-completion`
       mapping = cmp.mapping.preset.insert {
-        -- Select the [n]ext item
+        -- Select the next item
         ['<C-j>'] = cmp.mapping.select_next_item(),
-        -- Select the [p]revious item
+        -- Select the previous item
         ['<C-k>'] = cmp.mapping.select_prev_item(),
 
-        -- Accept ([y]es) the completion
-        ['<CR>'] = cmp.mapping.confirm { select = true },
+        -- Accept the completion
+        ['<TAB>'] = cmp.mapping.confirm { select = true },
 
         -- Close the completion menu
         ['<C-e>'] = cmp.mapping.close(),
@@ -49,8 +49,8 @@ return {
         ['<C-Space>'] = cmp.mapping.complete(),
 
         -- Scrolling
-        ['<C-n>'] = cmp.mapping.scroll_docs(4),
         ['<C-p>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-n>'] = cmp.mapping.scroll_docs(4),
 
         -- Snippet navigation
         ['<C-l>'] = cmp.mapping(function()

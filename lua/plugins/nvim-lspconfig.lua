@@ -119,10 +119,15 @@ return {
 
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
+      'cbfmt',
       'clangd',
       'clang-format',
+      'lua-language-server',
+      'marksman',
+      'ruff-lsp',
       'stylua',
       'taplo',
+      'wgsl-analyzer',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

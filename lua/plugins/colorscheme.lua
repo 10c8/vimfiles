@@ -5,6 +5,13 @@ return {
   config = function()
     vim.cmd 'let g:gruvbox_material_background = "hard"'
     vim.cmd 'let g:gruvbox_material_foreground = "original"'
+    vim.cmd 'let g:gruvbox_material_statusline_style = "original"'
+
+    vim.cmd 'let g:gruvbox_material_diagnostic_line_highlight = 1'
+    vim.cmd 'let g:gruvbox_material_diagnostic_virtual_text = "colored"'
+    vim.cmd 'let g:gruvbox_material_float_style = "dim"'
+
+    vim.cmd 'let g:gruvbox_material_better_performance = 1'
 
     vim.cmd.colorscheme 'gruvbox-material'
   end,
