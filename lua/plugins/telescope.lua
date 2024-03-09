@@ -4,6 +4,7 @@ return {
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
+    { 'nvim-tree/nvim-web-devicons' },
     {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make',
@@ -12,18 +13,15 @@ return {
       end,
     },
     { 'nvim-telescope/telescope-ui-select.nvim' },
-    { 'nvim-tree/nvim-web-devicons' },
+    { 'debugloop/telescope-undo.nvim' },
   },
   config = function()
+    local telescope = require 'telescope'
+    local ts_builtin = require 'telescope.builtin'
+
     -- [[ Configuration ]]
     -- see `:help telescope` and `:help telescope.setup()`
-    require('telescope').setup {
-      -- defaults = {
-      --   mappings = {
-      --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-      --   },
-      -- },
-      -- pickers = {}
+    telescope.setup {
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
@@ -32,27 +30,28 @@ return {
     }
 
     -- [[ Extensions ]]
-    pcall(require('telescope').load_extension, 'fzf')
-    pcall(require('telescope').load_extension, 'ui-select')
+    pcall(telescope.load_extension, 'fzf')
+    pcall(telescope.load_extension, 'ui-select')
+    pcall(telescope.load_extension, 'undo')
 
     -- [[ Keymaps ]]
     -- see `:help telescope.builtin`
-    local telescope = require 'telescope.builtin'
     vim.keymap.set('n', '<leader>sc', '<CMD>Telescope neoclip<CR>', { desc = '[s]earch [c]lipboard' })
-    vim.keymap.set('n', '<leader>sd', telescope.diagnostics, { desc = '[s]earch [d]iagnostics' })
-    vim.keymap.set('n', '<leader>sf', telescope.find_files, { desc = '[s]earch [f]iles' })
-    vim.keymap.set('n', '<leader>st', telescope.filetypes, { desc = '[s]earch file[t]ypes' })
-    vim.keymap.set('n', '<leader>sg', telescope.live_grep, { desc = '[s]earch by [g]rep' })
-    vim.keymap.set('n', '<leader>sh', telescope.help_tags, { desc = '[s]earch [h]elp' })
-    vim.keymap.set('n', '<leader>sk', telescope.keymaps, { desc = '[s]earch [k]eymaps' })
-    vim.keymap.set('n', '<leader>sr', telescope.resume, { desc = '[s]earch [r]esume' })
-    vim.keymap.set('n', '<leader>ss', telescope.builtin, { desc = '[s]earch [s]elect Telescope' })
-    vim.keymap.set('n', '<leader>sw', telescope.grep_string, { desc = '[s]earch current [w]ord' })
-    vim.keymap.set('n', '<leader>s.', telescope.oldfiles, { desc = '[s]earch recent files' })
-    vim.keymap.set('n', '<leader><leader>', telescope.buffers, { desc = 'Find existing buffers' })
+    vim.keymap.set('n', '<leader>sd', ts_builtin.diagnostics, { desc = '[s]earch [d]iagnostics' })
+    vim.keymap.set('n', '<leader>sf', ts_builtin.find_files, { desc = '[s]earch [f]iles' })
+    vim.keymap.set('n', '<leader>st', ts_builtin.filetypes, { desc = '[s]earch file[t]ypes' })
+    vim.keymap.set('n', '<leader>sg', ts_builtin.live_grep, { desc = '[s]earch by [g]rep' })
+    vim.keymap.set('n', '<leader>sh', ts_builtin.help_tags, { desc = '[s]earch [h]elp' })
+    vim.keymap.set('n', '<leader>sk', ts_builtin.keymaps, { desc = '[s]earch [k]eymaps' })
+    vim.keymap.set('n', '<leader>sr', ts_builtin.resume, { desc = '[s]earch [r]esume' })
+    vim.keymap.set('n', '<leader>ss', ts_builtin.builtin, { desc = '[s]earch [s]elect Telescope' })
+    vim.keymap.set('n', '<leader>su', '<CMD>Telescope undo<CR>', { desc = '[s]earch [u]ndo history' })
+    vim.keymap.set('n', '<leader>sw', ts_builtin.grep_string, { desc = '[s]earch current [w]ord' })
+    vim.keymap.set('n', '<leader>s.', ts_builtin.oldfiles, { desc = '[s]earch recent files' })
+    vim.keymap.set('n', '<leader><leader>', ts_builtin.buffers, { desc = 'Find existing buffers' })
 
     vim.keymap.set('n', '<leader>/', function()
-      telescope.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+      ts_builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
         winblend = 10,
         previewer = false,
       })
@@ -60,14 +59,14 @@ return {
 
     -- see `:help telescope.builtin.live_grep()`
     vim.keymap.set('n', '<leader>s/', function()
-      telescope.live_grep {
+      ts_builtin.live_grep {
         grep_open_files = true,
         prompt_title = 'Live Grep in Open Files',
       }
     end, { desc = '[s]earch [/] in open files' })
 
     vim.keymap.set('n', '<leader>sn', function()
-      telescope.find_files { cwd = vim.fn.stdpath 'config' }
+      ts_builtin.find_files { cwd = vim.fn.stdpath 'config' }
     end, { desc = '[s]earch [n]eovim files' })
   end,
 }

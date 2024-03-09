@@ -16,6 +16,7 @@ return {
         'html',
         'lua',
         'markdown',
+        'regex',
         'rust',
         'toml',
         'vim',

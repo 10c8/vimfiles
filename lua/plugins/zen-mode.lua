@@ -1,6 +1,6 @@
 return {
   'folke/zen-mode.nvim',
-  ft = { 'markdown', 'text', 'vimwiki' },
+  ft = { 'markdown' },
   dependencies = {
     {
       'folke/twilight.nvim',
@@ -31,9 +31,14 @@ return {
 
     -- [[ Autocommands ]]
     vim.api.nvim_create_autocmd('FileType', {
-      pattern = 'markdown,text,vimwiki',
+      pattern = 'markdown',
       desc = 'Enable Zen Mode automatically for some filetypes',
       callback = function()
+        -- If this is a floating window, don't enable Zen Mode
+        if vim.api.nvim_win_get_config(0).relative ~= '' then
+          return
+        end
+
         vim.defer_fn(function()
           zen.toggle()
 

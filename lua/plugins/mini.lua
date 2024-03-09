@@ -1,6 +1,7 @@
 return {
   'echasnovski/mini.nvim',
   config = function()
+    -- AI
     -- Better [A]round/[I]nside textobjects
     --
     --  - va)  - [V]isually select [A]round [)]paren
@@ -32,6 +33,7 @@ return {
     require('mini.move').setup()
 
     -- Files
+    -- Simple file explorer
     local files = require 'mini.files'
     files.setup {
       content = {
@@ -42,6 +44,7 @@ return {
     }
 
     -- Minimap
+    -- Code minimap
     local map = require 'mini.map'
 
     map.setup {
@@ -59,6 +62,16 @@ return {
       },
     }
 
+    -- Sessions
+    -- Save and restore sessions
+    local sessions = require 'mini.sessions'
+
+    sessions.setup {
+      autoread = true,
+      autowrite = true,
+      file = '.session.vim',
+    }
+
     -- [[ Keymaps ]]
     -- Open mini files explorer
     vim.keymap.set('', '<C-b>', function()
@@ -74,6 +87,19 @@ return {
     vim.keymap.set('n', '<leader>mo', map.open, { desc = '[M]inimap [O]pen' })
     vim.keymap.set('n', '<leader>mr', map.refresh, { desc = '[M]inimap [R]efresh' })
     vim.keymap.set('n', '<leader>ms', map.toggle_side, { desc = 'Toggle [M]inimap [S]ide' })
+
+    -- Sessions
+    vim.keymap.set('n', '<leader>pp', function()
+      sessions.write(sessions.config.file, nil)
+    end, { desc = 'Save local [p]roject' })
+
+    vim.keymap.set('n', '<leader>pl', function()
+      sessions.read(sessions.config.file, nil)
+    end, { desc = '[l]oad local [p]roject' })
+
+    vim.keymap.set('n', '<leader>pd', function()
+      sessions.delete(sessions.config.file, nil)
+    end, { desc = '[d]elete local [p]roject' })
 
     -- [[ Autocommands ]]
     vim.api.nvim_create_autocmd('VimEnter', {

@@ -1,0 +1,52 @@
+return {
+  'roman/golden-ratio',
+  config = function()
+    vim.cmd 'let g:golden_ratio_exclude_nonmodifiable = 1'
+    -- vim.cmd 'let g:golden_ratio_autocommand = 0'
+
+    -- [[ Autocommands ]]
+    -- local gr_resize = vim.api.nvim_create_augroup('golden_ratio_resize', {
+    --   clear = true,
+    -- })
+
+    -- vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter' }, {
+    --   pattern = '*',
+    --   desc = 'Resize windows automatically with golden-ratio.nvim',
+    --   group = gr_resize,
+    --   callback = function()
+    --     -- Check if the window is one of the following:
+    --     -- 1. A floating window
+    --     -- 2. A terminal window
+    --     -- 3. A vimspector window
+    --     -- 4. A quickfix window
+    --     -- And if it is, don't resize it
+
+    --     local win = vim.api.nvim_get_current_win()
+    --     local buf = vim.api.nvim_win_get_buf(win)
+    --     local ft = vim.api.nvim_get_option_value('filetype', { buf = buf })
+
+    --     local is_float = vim.api.nvim_win_get_config(win).relative ~= ''
+    --     local is_terminal = ft == 'terminal'
+    --     local is_quickfix = ft == 'qf'
+    --     local is_trouble = ft == 'Trouble'
+    --     local is_vimspector = ft == 'VimspectorPrompt'
+
+    --     if is_float or is_terminal or is_quickfix or is_trouble or is_vimspector then
+    --       return
+    --     end
+
+    --     -- vim.cmd 'silent! normal! <Plug>(golden_ratio_resize)'
+    --   end,
+    -- })
+
+    -- vim.api.nvim_create_autocmd('BufLeave', {
+    --   pattern = '*',
+    --   desc = 'Resize windows automatically with golden-ratio.nvim',
+    --   group = gr_resize,
+    --   callback = function()
+    --     local wrap = vim.g.golden_ratio_wrap_ignored
+    --     vim.cmd('let b:golden_ratio_saved_wrap = ' .. vim.inspect(wrap))
+    --   end,
+    -- })
+  end,
+}

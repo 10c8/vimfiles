@@ -6,10 +6,10 @@ return {
   config = function()
     -- [[ Keymaps ]]
     -- Close the vimspector window
-    vim.keymap.set('n', '<leader>vc', '<cmd>call vimspector#Reset()<cr>', { noremap = true, desc = '[c]lose the [v]imspector window' })
+    vim.keymap.set('n', '<leader>Dc', '<cmd>call vimspector#Reset()<cr>', { noremap = true, desc = '[c]lose the [D]ebugger' })
 
     -- Create `.vimspector.json` file for Rust
-    vim.keymap.set('n', '<leader>vlr', function()
+    vim.keymap.set('n', '<leader>DDr', function()
       -- Find `cargo.toml` file to find the root of the project
       local root = vim.fn.getcwd()
       while root ~= '/' do
@@ -58,6 +58,6 @@ return {
           '}',
         }, file)
       end
-    end, { noremap = true, desc = 'Create `.[v]imspector.json` file for [r]ust' })
+    end, { noremap = true, desc = 'Create `.vimspector.json` file for [r]ust' })
   end,
 }

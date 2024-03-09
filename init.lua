@@ -68,7 +68,7 @@ if vim.g.neovide then
   vim.o.guifont = 'FiraCode Nerd Font Mono:h9'
 
   vim.g.neovide_cursor_animation_length = 0.03
-  vim.g.neovide_cursor_trail_size = 0.8
+  vim.g.neovide_cursor_trail_size = 0.5
 
   -- Keymaps
   vim.keymap.set('v', '<C-c>', '"+y', { desc = 'Copy to clipboard' })
@@ -123,8 +123,8 @@ vim.keymap.set('n', '<TAB>', '<cmd>bn<CR>', { desc = 'Switch to the next buffer'
 vim.keymap.set('n', '<S-TAB>', '<cmd>bp<CR>', { desc = 'Switch to the previous buffer' })
 
 -- Splits
-vim.keymap.set('n', '<leader>Sw', '<cmd>split<CR>', { desc = '[S]plit the window horizontally' })
-vim.keymap.set('n', '<leader>Sv', '<cmd>vsplit<CR>', { desc = '[S]plit the window [v]ertically' })
+vim.keymap.set('n', '<leader>vh', '<cmd>split<CR>', { desc = 'Split the window [h]orizontally' })
+vim.keymap.set('n', '<leader>vv', '<cmd>vsplit<CR>', { desc = 'Split the window [v]ertically' })
 
 -- [[ Autocommands ]]
 -- Highlight yanked text
