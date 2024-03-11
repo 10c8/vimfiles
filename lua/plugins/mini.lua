@@ -58,7 +58,7 @@ return {
       },
       window = {
         focusable = true,
-        width = 12,
+        width = 14,
       },
     }
 
@@ -102,11 +102,29 @@ return {
     end, { desc = '[d]elete local [p]roject' })
 
     -- [[ Autocommands ]]
+    local minimap_autocmd_group = vim.api.nvim_create_augroup('mini.map', { clear = true })
+
     vim.api.nvim_create_autocmd('VimEnter', {
       desc = 'Open minimap on VimEnter',
-      group = vim.api.nvim_create_augroup('minimap-vimenter', { clear = true }),
+      group = minimap_autocmd_group,
       callback = function()
-        map.open()
+        local winwidth = vim.fn.winwidth(0)
+        if winwidth > 100 then
+          map.open()
+        end
+      end,
+    })
+
+    vim.api.nvim_create_autocmd('VimResized', {
+      desc = 'Handle minimap on VimResized',
+      group = minimap_autocmd_group,
+      callback = function()
+        local winwidth = vim.fn.winwidth(0)
+        if winwidth > 100 then
+          map.open()
+        else
+          map.close()
+        end
       end,
     })
   end,

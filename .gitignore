@@ -2,3 +2,6 @@
 nvim
 
 lazy-lock.json
+
+.session.vim
+

@@ -71,12 +71,12 @@ if vim.g.neovide then
   vim.g.neovide_cursor_trail_size = 0.5
 
   -- Keymaps
-  vim.keymap.set('v', '<C-c>', '"+y', { desc = 'Copy to clipboard' })
+  -- vim.keymap.set('v', '<C-c>', '"+y', { desc = 'Copy to clipboard' })
 
-  vim.api.nvim_set_keymap('', '<C-v>', '+p<CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('!', '<C-v>', '<C-R>+', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('i', '<C-v>', '<C-R>+', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('v', '<C-v>', '<C-R>+', { noremap = true, silent = true })
+  -- vim.api.nvim_set_keymap('', '<C-v>', '+p<CR>', { noremap = true, silent = true })
+  -- vim.api.nvim_set_keymap('!', '<C-v>', '<C-R>+', { noremap = true, silent = true })
+  -- vim.api.nvim_set_keymap('i', '<C-v>', '<C-R>+', { noremap = true, silent = true })
+  -- vim.api.nvim_set_keymap('v', '<C-v>', '<C-R>+', { noremap = true, silent = true })
 end
 
 -- [[ Keymaps ]]
