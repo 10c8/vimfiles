@@ -4,7 +4,6 @@ return {
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-
     { 'j-hui/fidget.nvim', opts = {} }, -- Adds a neat little notification for LSPs
   },
   opts = {
@@ -91,6 +90,12 @@ return {
     --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+    -- Enable folding with `kevinhwang91/nvim-ufo`
+    capabilities.textDocument.foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    }
 
     -- LSP servers
     -- see `:help lspconfig-all`
