@@ -6,7 +6,7 @@ return {
     gp.setup {
       default_mappings = false,
       opacity = 0,
-      dismiss_on_move = true,
+      -- dismiss_on_move = true,
       preview_window_title = {
         enable = true,
         position = 'center',
@@ -17,9 +17,11 @@ return {
     vim.keymap.set('n', 'gd', function()
       gp.goto_preview_definition {}
 
-      vim.keymap.set('', 'q', function()
-        gp.close_all_win()
-      end, { buffer = true, noremap = true, silent = true, desc = 'Close preview window' })
+      vim.defer_fn(function()
+        vim.keymap.set('', 'q', function()
+          gp.close_all_win()
+        end, { buffer = true, noremap = true, silent = true, desc = 'Close preview window' })
+      end, 200)
     end, { noremap = true, desc = 'Peek [d]efinition' })
   end,
 }
