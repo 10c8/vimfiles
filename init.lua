@@ -82,11 +82,11 @@ end
 -- [[ Keymaps ]]
 -- Highlight on search, clear on escape
 vim.opt.hlsearch = true
-vim.keymap.set('n', '<ESC>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<ESC>', '<CMD>nohlsearch<CR>')
 
 -- Motions
-vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true, desc = 'Move half page up' })
-vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true, desc = 'Move half page down' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true, desc = 'Move half page [u]p' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true, desc = 'Move half page [d]own' })
 
 -- Diagnostic navigation
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [d]iagnostic message' })
@@ -100,7 +100,7 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-vim.keymap.set('n', '<C-n>', '<cmd>enew<CR>', { desc = 'Create a file in a new buffer' })
+vim.keymap.set('n', '<C-n>', '<CMD>enew<CR>', { desc = 'Create a file in a new buffer' })
 vim.keymap.set('n', '<C-t>', function()
   vim.cmd 'enew'
 
@@ -117,14 +117,12 @@ vim.keymap.set('n', '<C-t>', function()
     end,
   }
 end, { desc = 'Edit a file in a new buffer' })
-vim.keymap.set('n', '<C-w>', '<cmd>bd<CR>', { desc = 'Close the current buffer' })
-vim.keymap.set('n', '<C-S-w>', '<cmd>bd!<CR>', { desc = 'Close the current buffer (force)' })
-vim.keymap.set('n', '<TAB>', '<cmd>bn<CR>', { desc = 'Switch to the next buffer' })
-vim.keymap.set('n', '<S-TAB>', '<cmd>bp<CR>', { desc = 'Switch to the previous buffer' })
+vim.keymap.set('n', '<C-w>', '<CMD>bd<CR>', { desc = 'Close the current buffer' })
+vim.keymap.set('n', '<C-S-w>', '<CMD>bd!<CR>', { desc = 'Close the current buffer (force)' })
 
 -- Splits
-vim.keymap.set('n', '<leader>vh', '<cmd>split<CR>', { desc = 'Split the window [h]orizontally' })
-vim.keymap.set('n', '<leader>vv', '<cmd>vsplit<CR>', { desc = 'Split the window [v]ertically' })
+vim.keymap.set('n', '<leader>vh', '<CMD>split<CR>', { desc = 'Split the window [h]orizontally' })
+vim.keymap.set('n', '<leader>vv', '<CMD>vsplit<CR>', { desc = 'Split the window [v]ertically' })
 
 -- [[ Autocommands ]]
 -- Highlight yanked text

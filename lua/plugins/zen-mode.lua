@@ -27,7 +27,7 @@ return {
 
     -- [[ Keymaps ]]
     -- Toggle Zen Mode
-    vim.keymap.set('n', '<leader>z', '<cmd>ZenMode<CR>', { silent = true, desc = 'Toggle [z]en mode' })
+    vim.keymap.set('n', '<leader>z', '<CMD>ZenMode<CR>', { silent = true, desc = 'Toggle [z]en mode' })
 
     -- [[ Autocommands ]]
     vim.api.nvim_create_autocmd('FileType', {

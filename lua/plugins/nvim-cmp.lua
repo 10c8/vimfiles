@@ -40,7 +40,7 @@ return {
         ['<C-k>'] = cmp.mapping.select_prev_item(),
 
         -- Accept the completion
-        ['<TAB>'] = cmp.mapping.confirm { select = true },
+        ['<CR>'] = cmp.mapping.confirm { select = true },
 
         -- Close the completion menu
         ['<C-e>'] = cmp.mapping.close(),

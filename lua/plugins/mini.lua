@@ -78,15 +78,15 @@ return {
       if not files.close() then
         files.open()
       end
-    end, { desc = 'Open file {b}rowser' })
+    end, { desc = 'Open file [b]rowser' })
 
     -- Minimap
-    vim.keymap.set('n', '<leader>mm', map.toggle, { desc = 'Toggle [M]ini [M]ap' })
-    vim.keymap.set('n', '<leader>mc', map.close, { desc = '[M]inimap [C]lose' })
-    vim.keymap.set('n', '<leader>mf', map.toggle_focus, { desc = 'Toggle [M]inimap [F]ocus' })
-    vim.keymap.set('n', '<leader>mo', map.open, { desc = '[M]inimap [O]pen' })
-    vim.keymap.set('n', '<leader>mr', map.refresh, { desc = '[M]inimap [R]efresh' })
-    vim.keymap.set('n', '<leader>ms', map.toggle_side, { desc = 'Toggle [M]inimap [S]ide' })
+    vim.keymap.set('n', '<leader>mm', map.toggle, { desc = 'Toggle [m]ini [m]ap' })
+    vim.keymap.set('n', '<leader>mc', map.close, { desc = '[m]inimap [c]lose' })
+    vim.keymap.set('n', '<leader>mf', map.toggle_focus, { desc = 'Toggle [m]inimap [f]ocus' })
+    vim.keymap.set('n', '<leader>mo', map.open, { desc = '[m]inimap [o]pen' })
+    vim.keymap.set('n', '<leader>mr', map.refresh, { desc = '[m]inimap [r]efresh' })
+    vim.keymap.set('n', '<leader>ms', map.toggle_side, { desc = 'Toggle [m]inimap [s]ide' })
 
     -- Sessions
     vim.keymap.set('n', '<leader>pp', function()

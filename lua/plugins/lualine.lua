@@ -78,7 +78,6 @@ return {
         },
         lualine_c = {},
         lualine_x = {
-          'copilot',
           { 'encoding', fmt = trunc(nil, nil, 81, true) },
           {
             'fileformat',
@@ -91,6 +90,7 @@ return {
             fmt = trunc(nil, nil, 81, true),
           },
           'filetype',
+          'copilot',
         },
         lualine_y = { 'progress' },
         lualine_z = { 'location' },

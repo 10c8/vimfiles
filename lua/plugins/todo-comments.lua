@@ -18,6 +18,20 @@ return {
         TEST = { icon = '󰙨 ', color = 'test', alt = { 'TESTING', 'PASSED', 'FAILED' } },
         SAFETY = { icon = ' ', color = 'hint' },
       },
+      highlight = {
+        pattern = [[.*<(KEYWORDS)\s*:*]],
+      },
+      colors = {
+        error = { '#fb4934' },
+        warning = { '#fe8019' },
+        info = { '#83a598' },
+        hint = { '#a89984' },
+        default = { 'Identifier' },
+        test = { 'Identifier' },
+      },
+      search = {
+        pattern = [[\b(KEYWORDS)\b]],
+      },
     }
 
     -- [[ Keymaps ]]

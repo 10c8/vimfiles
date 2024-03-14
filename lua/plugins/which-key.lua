@@ -12,7 +12,6 @@ return {
       ['<leader>D'] = { name = '[D]ebugger', _ = 'which_key_ignore' },
       ['<leader>m'] = { name = '[m]inimap', _ = 'which_key_ignore' },
       ['<leader>p'] = { name = '[p]roject', _ = 'which_key_ignore' },
-      ['<leader>r'] = { name = '[r]ename', _ = 'which_key_ignore' },
       ['<leader>s'] = { name = '[s]earch', _ = 'which_key_ignore' },
       ['<leader>t'] = { name = '[t]erminal', _ = 'which_key_ignore' },
       ['<leader>T'] = { name = '[T]ODOs', _ = 'which_key_ignore' },

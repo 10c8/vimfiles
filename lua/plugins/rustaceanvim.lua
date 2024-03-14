@@ -22,8 +22,7 @@ return {
     }
 
     -- Underline mutable values
-    vim.api.nvim_set_hl(0, '@lsp.typemod.variable.mutable', { underline = true })
-    vim.api.nvim_set_hl(0, '@lsp.typemod.parameter.mutable', { underline = true })
+    vim.api.nvim_set_hl(0, '@lsp.mod.mutable', { underline = true })
 
     -- [[ Keymaps ]]
     -- Open `cargo.toml`
