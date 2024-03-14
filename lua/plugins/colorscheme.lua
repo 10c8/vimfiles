@@ -13,6 +13,13 @@ return {
 
     vim.cmd 'let g:gruvbox_material_better_performance = 1'
 
+    vim.cmd [[
+      let g:gruvbox_material_colors_override = {
+        \ "aqua": ["#b8bb26", "142"],
+        \ "green": ["#8ec07c", "108"]
+      \ }
+    ]]
+
     vim.cmd.colorscheme 'gruvbox-material'
   end,
 }
