@@ -32,5 +32,12 @@ return {
         sort_by = 'insert_at_end',
       },
     }
+
+    -- [[ Keymaps ]]
+    vim.keymap.set('n', '<TAB>', '<CMD>BufferLineCycleNext<CR>', { noremap = true, silent = true, desc = 'Switch to the next buffer' })
+    vim.keymap.set('n', '<S-TAB>', '<CMD>BufferLineCyclePrev<CR>', { noremap = true, silent = true, desc = 'Switch to the previous buffer' })
+    vim.keymap.set('n', '<Leader><TAB>', '<CMD>BufferLineMoveNext<CR>', { noremap = true, silent = true, desc = 'Move buffer to the right' })
+    vim.keymap.set('n', '<Leader><S-TAB>', '<CMD>BufferLineMovePrev<CR>', { noremap = true, silent = true, desc = 'Move buffer to the left' })
+    vim.keymap.set('n', 'gB', '<CMD>BufferLinePick<CR>', { noremap = true, silent = true, desc = 'Pick a [B]uffer' })
   end,
 }
