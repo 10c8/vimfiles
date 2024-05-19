@@ -1,0 +1,35 @@
+return {
+  'mhartington/formatter.nvim',
+  version = '0.25.*',
+  config = function()
+    require('formatter').setup {
+      filetype = {
+        javascript = {
+          function()
+            return {
+              exe = 'prettierd',
+              args = { vim.api.nvim_buf_get_name(0) },
+              stdin = true,
+            }
+          end,
+        },
+        typescript = {
+          function()
+            return {
+              exe = 'prettierd',
+              args = { vim.api.nvim_buf_get_name(0) },
+              stdin = true,
+            }
+          end,
+        },
+      },
+    }
+
+    -- Autocommands
+    vim.api.nvim_create_augroup('__formatter__', { clear = true })
+    vim.api.nvim_create_autocmd('BufWritePost', {
+      group = '__formatter__',
+      command = ':FormatWrite',
+    })
+  end,
+}

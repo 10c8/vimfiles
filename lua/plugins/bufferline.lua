@@ -1,5 +1,6 @@
 return {
   'akinsho/bufferline.nvim',
+  commit = '64e2c5d',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     local bufferline = require 'bufferline'

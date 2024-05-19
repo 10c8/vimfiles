@@ -84,23 +84,23 @@ end
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<ESC>', '<CMD>nohlsearch<CR>')
 
--- Motions
+-- Navigation
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true, desc = 'Move half page [u]p' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true, desc = 'Move half page [d]own' })
 
 -- Diagnostic navigation
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [d]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [d]iagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [e]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [q]uickfix list' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { noremap = true, desc = 'Go to previous [d]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { noremap = true, desc = 'Go to next [d]iagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { noremap = true, desc = 'Show diagnostic [e]rror messages' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { noremap = true, desc = 'Open diagnostic [q]uickfix list' })
 
 -- Buffers
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { noremap = true, desc = 'Move focus to the left window' })
+vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { noremap = true, desc = 'Move focus to the right window' })
+vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { noremap = true, desc = 'Move focus to the lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { noremap = true, desc = 'Move focus to the upper window' })
 
-vim.keymap.set('n', '<C-n>', '<CMD>enew<CR>', { desc = 'Create a file in a new buffer' })
+vim.keymap.set('n', '<C-n>', '<CMD>enew<CR>', { noremap = true, desc = 'New empty buffer' })
 vim.keymap.set('n', '<C-t>', function()
   vim.cmd 'enew'
 
@@ -116,13 +116,17 @@ vim.keymap.set('n', '<C-t>', function()
       return true
     end,
   }
-end, { desc = 'Edit a file in a new buffer' })
-vim.keymap.set('n', '<C-w>', '<CMD>bd<CR>', { desc = 'Close the current buffer' })
-vim.keymap.set('n', '<C-S-w>', '<CMD>bd!<CR>', { desc = 'Close the current buffer (force)' })
+end, { noremap = true, desc = 'Edit in a new buffer' })
+vim.keymap.set('n', '<C-w>', '<CMD>bd<CR>', { noremap = true, desc = 'Close the current buffer' })
+vim.keymap.set('n', '<C-S-w>', '<CMD>bd!<CR>', { noremap = true, desc = 'Close the current buffer (force)' })
 
 -- Splits
-vim.keymap.set('n', '<leader>vh', '<CMD>split<CR>', { desc = 'Split the window [h]orizontally' })
-vim.keymap.set('n', '<leader>vv', '<CMD>vsplit<CR>', { desc = 'Split the window [v]ertically' })
+vim.keymap.set('n', '<leader>vh', '<CMD>split<CR>', { noremap = true, desc = 'Split the window [h]orizontally' })
+vim.keymap.set('n', '<leader>vv', '<CMD>vsplit<CR>', { noremap = true, desc = 'Split the window [v]ertically' })
+
+-- Saving
+vim.keymap.set('n', '<S-w><S-w>', '<CMD>w<CR>', { noremap = true, desc = '[W]rite the current buffer' })
+vim.keymap.set('n', '<S-w><S-a>', '<CMD>writeas<CR>', { noremap = true, desc = '[W]rite the current buffer [a]s' })
 
 -- [[ Autocommands ]]
 -- Highlight yanked text

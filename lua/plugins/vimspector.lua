@@ -1,5 +1,9 @@
 return {
   'puremourning/vimspector',
+  lazy = true,
+  ft = {
+    'rust',
+  },
   init = function()
     vim.g.vimspector_enable_mappings = 'HUMAN'
   end,

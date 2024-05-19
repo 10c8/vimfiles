@@ -1,5 +1,6 @@
 return {
   'nvim-telescope/telescope.nvim',
+  lazy = true,
   event = 'VimEnter',
   branch = '0.1.x',
   dependencies = {
@@ -38,7 +39,9 @@ return {
     -- see `:help telescope.builtin`
     vim.keymap.set('n', '<leader>sc', '<CMD>Telescope neoclip<CR>', { desc = '[s]earch [c]lipboard' })
     vim.keymap.set('n', '<leader>sd', ts_builtin.diagnostics, { desc = '[s]earch [d]iagnostics' })
-    vim.keymap.set('n', '<leader>sf', ts_builtin.find_files, { desc = '[s]earch [f]iles' })
+    vim.keymap.set('n', '<leader>sf', function()
+      ts_builtin.find_files { hidden = true }
+    end, { desc = '[s]earch [f]iles' })
     vim.keymap.set('n', '<leader>sg', ts_builtin.live_grep, { desc = '[s]earch by [g]rep' })
     vim.keymap.set('n', '<leader>sh', ts_builtin.help_tags, { desc = '[s]earch [h]elp' })
     vim.keymap.set('n', '<leader>sk', ts_builtin.keymaps, { desc = '[s]earch [k]eymaps' })

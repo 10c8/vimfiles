@@ -1,5 +1,7 @@
 return {
   'rmagatti/goto-preview',
+  lazy = true,
+  event = 'BufRead',
   config = function()
     local gp = require 'goto-preview'
 

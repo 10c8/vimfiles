@@ -67,7 +67,7 @@ return {
           },
           {
             'diagnostics',
-            sources = { 'nvim_lsp' },
+            sources = { 'coc' },
             symbols = {
               error = ' ',
               warn = ' ',

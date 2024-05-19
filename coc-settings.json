@@ -1,0 +1,51 @@
+{
+  "coc.preferences.useQuickfixForLocations": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "go",
+    "graphql",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "less",
+    "lua",
+    "markdown",
+    "python",
+    "rust",
+    "scss",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "yaml"
+  ],
+
+  // Diagnostics
+  "diagnostic.hintSign": "",
+  "diagnostic.infoSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.errorSign": "",
+  "diagnostic.locationlistUpdate": true,
+  "diagnostic.refreshOnInsertMode": true,
+
+  // Language servers
+  "languageserver": {
+    "gleam": {
+      "command": "gleam",
+      "args": ["lsp"],
+      "filetypes": ["gleam"]
+    },
+    "godot": {
+      "host": "127.0.0.1",
+      "filetypes": ["gd", "gdscript", "gdscript3"],
+      "port": 6008
+    }
+  },
+
+  // Lua
+  "Lua.diagnostics.globals": ["vim"],
+  "Lua.runtime.version": "LuaJIT",
+  "Lua.workspace.checkThirdParty": false,
+  "Lua.workspace.library": ["${3rd}/luv/library"],
+  "Lua.completion.callSnippet": "Replace"
+}

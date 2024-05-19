@@ -1,17 +1,21 @@
 return {
   'zbirenbaum/copilot.lua',
-  cmd = 'Copilot',
+  lazy = true,
   event = 'InsertEnter',
+  cmd = 'Copilot',
   config = function()
     require('copilot').setup {
+      panel = { enabled = false },
       suggestion = {
         enabled = true,
         auto_trigger = true,
         keymap = {
           accept = '<TAB>',
+          next = '<C-Shift-J>',
+          prev = '<C-Shift-K>',
+          dismiss = '<ESC>',
         },
       },
-      panel = { enabled = false },
       filetypes = {
         help = false,
         gitcommit = false,

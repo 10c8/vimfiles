@@ -89,7 +89,7 @@ return {
     --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
     --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    -- capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     -- Enable folding with `kevinhwang91/nvim-ufo`
     capabilities.textDocument.foldingRange = {
@@ -125,24 +125,78 @@ return {
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'cbfmt',
-      'clangd',
       'clang-format',
+      'clangd',
+      'emmet-language-server',
       'lua-language-server',
       'marksman',
+      'prettierd',
       'ruff-lsp',
+      'selene',
       'stylua',
+      'tailwindcss-language-server',
       'taplo',
       'wgsl-analyzer',
     })
-    require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+
+    require('mason-tool-installer').setup {
+      ensure_installed = ensure_installed,
+    }
 
     require('mason-lspconfig').setup {
       handlers = {
         function(server_name)
           local server = servers[server_name] or {}
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+
           require('lspconfig')[server_name].setup(server)
         end,
+
+        -- Emmet
+        ['emmet_language_server'] = function()
+          require('lspconfig').emmet_language_server.setup {
+            filetypes = {
+              'css',
+              'html',
+              'javascript',
+              'javascriptreact',
+              'less',
+              'sass',
+              'scss',
+              'pug',
+              'typescriptreact',
+              'vue',
+              'svelte',
+            },
+          }
+        end,
+
+        -- C#
+        -- ['omnisharp'] = function()
+        --   require('lspconfig').omnisharp.setup {
+        --     -- handlers = {
+        --     --   ['textDocument/definition'] = require('omnisharp_extended').handler,
+        --     -- },
+        --     enable_editorconfig_support = true,
+        --     enable_ms_build_load_projects_on_demand = false,
+        --     enable_roslyn_analyzers = true,
+        --     organize_imports_on_format = true,
+        --     enable_import_completion = true,
+        --     sdk_include_prereleases = true,
+        --     -- analyze_open_documents_only = true,
+        --   }
+        -- end,
+
+        -- GDScript
+        -- ['gdscript'] = function()
+        --   require('lspconfig').gdscript.setup {
+        --     cmd = { 'ncat', '127.0.0.1', '6008' },
+        --     filetypes = { 'gd', 'gdscript', 'gdscript3' },
+        --     root_dir = require('lspconfig.util').root_pattern('project.godot', '.git'),
+        --     force_setup = true,
+        --     single_file_support = false,
+        --   }
+        -- end,
       },
     }
   end,

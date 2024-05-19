@@ -1,0 +1,25 @@
+return {
+  'pmizio/typescript-tools.nvim',
+  lazy = true,
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'neovim/nvim-lspconfig',
+  },
+  opts = {
+    settings = {
+      tsserver_file_preferences = function(ft)
+        return {
+          quotePreference = 'double',
+        }
+      end,
+      tsserver_format_options = function(ft)
+        return {
+          semicolons = true,
+        }
+      end,
+      tsserver_plugins = {
+        '@styled/typescript-styled-plugin',
+      },
+    },
+  },
+}

@@ -1,5 +1,6 @@
 return {
   'folke/noice.nvim',
+  lazy = true,
   event = 'VeryLazy',
   dependencies = {
     'MunifTanjim/nui.nvim',
@@ -27,6 +28,15 @@ return {
           event = 'msg_show',
           kind = '',
           find = 'written',
+        },
+        opts = { skip = true },
+      },
+      {
+        -- Ignore "no information available" messages
+        filter = {
+          event = 'msg_show',
+          kind = '',
+          find = 'no information available',
         },
         opts = { skip = true },
       },

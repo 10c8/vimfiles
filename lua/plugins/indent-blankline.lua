@@ -10,6 +10,8 @@ local highlight = {
 
 return {
   'lukas-reineke/indent-blankline.nvim',
+  lazy = true,
+  event = 'BufReadPre',
   main = 'ibl',
   config = function()
     local hooks = require 'ibl.hooks'

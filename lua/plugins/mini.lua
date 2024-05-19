@@ -21,7 +21,6 @@ return {
 
     -- Trailspace
     -- Trim all trailing whitespace with `MiniTrailspace.trim()`.
-    -- TODO: Call `MiniTrailspace.trim()` on save.
     require('mini.trailspace').setup()
 
     -- Pairs
@@ -43,25 +42,6 @@ return {
       },
     }
 
-    -- Minimap
-    -- Code minimap
-    local map = require 'mini.map'
-
-    map.setup {
-      integrations = {
-        map.gen_integration.builtin_search(),
-        map.gen_integration.diagnostic(),
-        map.gen_integration.gitsigns(),
-      },
-      symbols = {
-        encode = map.gen_encode_symbols.dot '4x2',
-      },
-      window = {
-        focusable = true,
-        width = 14,
-      },
-    }
-
     -- Sessions
     -- Save and restore sessions
     local sessions = require 'mini.sessions'
@@ -80,14 +60,6 @@ return {
       end
     end, { desc = 'Open file [b]rowser' })
 
-    -- Minimap
-    vim.keymap.set('n', '<leader>mm', map.toggle, { desc = 'Toggle [m]ini [m]ap' })
-    vim.keymap.set('n', '<leader>mc', map.close, { desc = '[m]inimap [c]lose' })
-    vim.keymap.set('n', '<leader>mf', map.toggle_focus, { desc = 'Toggle [m]inimap [f]ocus' })
-    vim.keymap.set('n', '<leader>mo', map.open, { desc = '[m]inimap [o]pen' })
-    vim.keymap.set('n', '<leader>mr', map.refresh, { desc = '[m]inimap [r]efresh' })
-    vim.keymap.set('n', '<leader>ms', map.toggle_side, { desc = 'Toggle [m]inimap [s]ide' })
-
     -- Sessions
     vim.keymap.set('n', '<leader>pp', function()
       sessions.write(sessions.config.file, nil)
@@ -100,32 +72,5 @@ return {
     vim.keymap.set('n', '<leader>pd', function()
       sessions.delete(sessions.config.file, nil)
     end, { desc = '[d]elete local [p]roject' })
-
-    -- [[ Autocommands ]]
-    local minimap_autocmd_group = vim.api.nvim_create_augroup('mini.map', { clear = true })
-
-    vim.api.nvim_create_autocmd('VimEnter', {
-      desc = 'Open minimap on VimEnter',
-      group = minimap_autocmd_group,
-      callback = function()
-        local winwidth = vim.fn.winwidth(0)
-        if winwidth > 100 then
-          map.open()
-        end
-      end,
-    })
-
-    vim.api.nvim_create_autocmd('VimResized', {
-      desc = 'Handle minimap on VimResized',
-      group = minimap_autocmd_group,
-      callback = function()
-        local winwidth = vim.fn.winwidth(0)
-        if winwidth > 100 then
-          map.open()
-        else
-          map.close()
-        end
-      end,
-    })
   end,
 }

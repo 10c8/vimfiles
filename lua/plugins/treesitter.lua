@@ -1,8 +1,27 @@
 return {
   'nvim-treesitter/nvim-treesitter',
+  lazy = true,
+  event = 'BufReadPre',
   build = ':TSUpdate',
   dependencies = {
-    'nvim-treesitter/nvim-treesitter-context',
+    {
+      'nvim-treesitter/nvim-treesitter-context',
+      config = function()
+        local context = require 'treesitter-context'
+
+        context.setup {
+          max_lines = 6,
+          min_window_height = 33,
+          mode = 'topline',
+          zindex = 10,
+        }
+
+        -- [[ Keymaps ]]
+        vim.keymap.set('n', '[c', function()
+          context.go_to_context(vim.v.count1)
+        end, { silent = true, desc = 'Go to previous context' })
+      end,
+    },
     'nvim-treesitter/nvim-treesitter-textobjects',
   },
   config = function()
@@ -14,20 +33,23 @@ return {
         'bash',
         'c',
         'html',
+        'javascript',
         'lua',
         'markdown',
         'regex',
         'rust',
         'toml',
+        'typescript',
         'vim',
         'vimdoc',
       },
       auto_install = true,
       highlight = {
         enable = true,
+        additional_vim_regex_highlighting = true,
       },
       indent = {
-        enable = true,
+        enable = false,
       },
       textobjects = {
         select = {

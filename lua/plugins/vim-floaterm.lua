@@ -1,5 +1,7 @@
 return {
   'voldikss/vim-floaterm',
+  lazy = true,
+  event = 'VimEnter',
   config = function()
     vim.g.floaterm_shell = 'pwsh'
     vim.g.floaterm_title = 'Terminal ($1/$2)'
