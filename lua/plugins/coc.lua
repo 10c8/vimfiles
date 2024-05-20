@@ -3,46 +3,50 @@ return {
   lazy = true,
   ft = {
     'vue',
-    'clangd',
+    -- 'clangd',
     'css',
     'scss',
     'less',
-    'go',
+    -- 'go',
     'haxe',
     'html',
-    'json',
-    'markdown',
-    'python',
-    'lua',
-    'toml',
+    -- 'json',
+    -- 'markdown',
+    -- 'python',
+    -- 'rust',
+    -- 'lua',
+    -- 'toml',
     'javascript',
     'typescript',
     'typescriptreact',
     'javascriptreact',
-    'graphql',
-    'yaml',
-    'zig',
+    -- 'graphql',
+    -- 'yaml',
+    -- 'zig',
   },
   branch = 'master',
   build = 'npm ci',
   config = function()
     vim.g.coc_global_extensions = {
+      -- '@yaegassy/coc-marksman',
+      '@yaegassy/coc-tailwindcss3',
       '@yaegassy/coc-volar',
-      'coc-clangd',
+      -- 'coc-clangd',
       'coc-css',
       'coc-git',
-      'coc-go',
+      -- 'coc-go',
       'coc-haxe',
       'coc-html',
-      'coc-json',
-      'coc-markdownlint',
+      -- 'coc-json',
+      -- 'coc-markdownlint',
       'coc-prettier',
-      'coc-pyright',
-      'coc-sumneko-lua',
-      'coc-toml',
+      -- 'coc-pyright',
+      -- 'coc-rust-analyzer',
+      -- 'coc-sumneko-lua',
+      -- 'coc-toml',
       'coc-tsserver',
-      'coc-yaml',
-      'coc-zig',
+      -- 'coc-yaml',
+      -- 'coc-zig',
     }
 
     function _G.check_backspace()
@@ -59,11 +63,13 @@ return {
 
     -- [[ Keymaps ]]
     -- Tab for autocompletion
-    vim.keymap.set('i', '<TAB>', 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_backspace() ? "<TAB>" : coc#refresh()', opts)
+    vim.keymap.set('i', '<TAB>',
+      'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_backspace() ? "<TAB>" : coc#refresh()', opts)
     vim.keymap.set('i', '<S-TAB>', 'coc#pum#visible() ? coc#pum#previous(1) : "<C-h>"', opts)
 
     -- <CR> accepts completion item or notifies CoC to format
-    vim.keymap.set('i', '<CR>', [[coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"]], opts)
+    vim.keymap.set('i', '<CR>', [[coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<C-r>=coc#on_enter()\<CR>"]],
+      opts)
 
     -- <C-j> to trigger snippets
     vim.keymap.set('i', '<C-j>', '<Plug>(coc-snippets-expand-jump)')
@@ -103,11 +109,15 @@ return {
     vim.keymap.set('n', '<leader>f', '<Plug>(coc-format-selected)', { silent = true, desc = '[f]ormat selected' })
 
     -- Apply code action to the selected region
-    vim.keymap.set('x', '<leader>a', '<Plug>(coc-codeaction-selected)', { silent = true, nowait = true, desc = 'Apply code [a]ction (selected)' })
-    vim.keymap.set('n', '<leader>a', '<Plug>(coc-codeaction-selected)', { silent = true, nowait = true, desc = 'Apply code [a]ction (selected)' })
+    vim.keymap.set('x', '<leader>a', '<Plug>(coc-codeaction-selected)',
+      { silent = true, nowait = true, desc = 'Apply code [a]ction (selected)' })
+    vim.keymap.set('n', '<leader>a', '<Plug>(coc-codeaction-selected)',
+      { silent = true, nowait = true, desc = 'Apply code [a]ction (selected)' })
 
-    vim.keymap.set('n', '<leader>ac', '<Plug>(coc-codeaction-cursor)', { silent = true, nowait = true, desc = 'Apply code [a]ction ([c]ursor)' })
-    vim.keymap.set('n', '<leader>as', '<Plug>(coc-codeaction-source)', { silent = true, nowait = true, desc = 'Apply code [a]ction ([s]ource)' })
+    vim.keymap.set('n', '<leader>ac', '<Plug>(coc-codeaction-cursor)',
+      { silent = true, nowait = true, desc = 'Apply code [a]ction ([c]ursor)' })
+    vim.keymap.set('n', '<leader>as', '<Plug>(coc-codeaction-source)',
+      { silent = true, nowait = true, desc = 'Apply code [a]ction ([s]ource)' })
 
     -- Apply the most preferred quickfix action on the current line
     vim.keymap.set(
@@ -119,11 +129,14 @@ return {
 
     -- Refactoring
     vim.keymap.set('n', '<leader>re', '<Plug>(coc-codeaction-refactor)', { silent = true, desc = '[re]factor' })
-    vim.keymap.set('n', '<leader>r', '<Plug>(coc-codeaction-refactor-selected)', { silent = true, desc = '[r]efactor selected' })
-    vim.keymap.set('x', '<leader>r', '<Plug>(coc-codeaction-refactor-selected)', { silent = true, desc = '[r]efactor selected' })
+    vim.keymap.set('n', '<leader>r', '<Plug>(coc-codeaction-refactor-selected)',
+      { silent = true, desc = '[r]efactor selected' })
+    vim.keymap.set('x', '<leader>r', '<Plug>(coc-codeaction-refactor-selected)',
+      { silent = true, desc = '[r]efactor selected' })
 
     -- Code Lens actions
-    vim.keymap.set('n', '<leader>cl', '<Plug>(coc-codelens-action)', { silent = true, nowait = true, desc = 'Run [c]ode [l]ens actions on current line' })
+    vim.keymap.set('n', '<leader>cl', '<Plug>(coc-codelens-action)',
+      { silent = true, nowait = true, desc = 'Run [c]ode [l]ens actions on current line' })
 
     -- Map function and class text objects
     vim.keymap.set('o', 'af', '<Plug>(coc-funcobj-a)', { silent = true, nowait = true })
@@ -136,28 +149,44 @@ return {
     vim.keymap.set('x', 'ic', '<Plug>(coc-classobj-i)', { silent = true, nowait = true })
 
     -- <C-j> and <C-k> to scroll on floating windows
-    vim.keymap.set('n', '<C-j>', 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-j>"', { silent = true, nowait = true, expr = true })
-    vim.keymap.set('n', '<C-k>', 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-k>"', { silent = true, nowait = true, expr = true })
+    vim.keymap.set('n', '<C-j>', 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-j>"',
+      { silent = true, nowait = true, expr = true })
+    vim.keymap.set('n', '<C-k>', 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-k>"',
+      { silent = true, nowait = true, expr = true })
 
-    vim.keymap.set('i', '<C-j>', 'coc#float#has_scroll() ? "<C-j>=coc#float#scroll(1)<CR>" : "<Right>"', { silent = true, nowait = true, expr = true })
-    vim.keymap.set('i', '<C-k>', 'coc#float#has_scroll() ? "<C-k>=coc#float#scroll(0)<CR>" : "<Right>"', { silent = true, nowait = true, expr = true })
+    vim.keymap.set('i', '<C-j>', 'coc#float#has_scroll() ? "<C-j>=coc#float#scroll(1)<CR>" : "<Right>"',
+      { silent = true, nowait = true, expr = true })
+    vim.keymap.set('i', '<C-k>', 'coc#float#has_scroll() ? "<C-k>=coc#float#scroll(0)<CR>" : "<Right>"',
+      { silent = true, nowait = true, expr = true })
 
-    vim.keymap.set('v', '<C-j>', 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-j>"', { silent = true, nowait = true, expr = true })
-    vim.keymap.set('v', '<C-k>', 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-k>"', { silent = true, nowait = true, expr = true })
+    vim.keymap.set('v', '<C-j>', 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-j>"',
+      { silent = true, nowait = true, expr = true })
+    vim.keymap.set('v', '<C-k>', 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-k>"',
+      { silent = true, nowait = true, expr = true })
 
     -- <C-j> and <C-k> to scroll suggestions
-    vim.keymap.set('i', '<C-j>', 'coc#pum#visible() ? coc#pum#next(1) : "<C-j>"', { silent = true, nowait = true, expr = true })
-    vim.keymap.set('i', '<C-k>', 'coc#pum#visible() ? coc#pum#prev(1) : "<C-k>"', { silent = true, nowait = true, expr = true })
+    vim.keymap.set('i', '<C-j>', 'coc#pum#visible() ? coc#pum#next(1) : "<C-j>"',
+      { silent = true, nowait = true, expr = true })
+    vim.keymap.set('i', '<C-k>', 'coc#pum#visible() ? coc#pum#prev(1) : "<C-k>"',
+      { silent = true, nowait = true, expr = true })
 
     -- CoCList
-    vim.keymap.set('n', '<leader>ld', '<CMD>CocList diagnostics<CR>', { silent = true, nowait = true, desc = 'Show all [d]iagnostics' })
-    vim.keymap.set('n', '<leader>le', '<CMD>CocList extensions<CR>', { silent = true, nowait = true, desc = 'Manage [e]xtensions' })
-    vim.keymap.set('n', '<leader>lc', '<CMD>CocList commands<CR>', { silent = true, nowait = true, desc = 'Show [c]ommands' })
-    vim.keymap.set('n', '<leader>lo', '<CMD>CocList outline<CR>', { silent = true, nowait = true, desc = 'Show [o]utline' })
-    vim.keymap.set('n', '<leader>ls', '<CMD>CocList -I symbols<CR>', { silent = true, nowait = true, desc = 'Search workspace [s]ymbols' })
-    vim.keymap.set('n', '<leader>lj', '<CMD>CocNext<CR>', { silent = true, nowait = true, desc = 'Do default action for next item' })
-    vim.keymap.set('n', '<leader>lk', '<CMD>CocPrev<CR>', { silent = true, nowait = true, desc = 'Do default action for previous item' })
-    vim.keymap.set('n', '<leader>lp', '<CMD>CocListResume<CR>', { silent = true, nowait = true, desc = 'Resume latest CoC list' })
+    vim.keymap.set('n', '<leader>ld', '<CMD>CocList diagnostics<CR>',
+      { silent = true, nowait = true, desc = 'Show all [d]iagnostics' })
+    vim.keymap.set('n', '<leader>le', '<CMD>CocList extensions<CR>',
+      { silent = true, nowait = true, desc = 'Manage [e]xtensions' })
+    vim.keymap.set('n', '<leader>lc', '<CMD>CocList commands<CR>',
+      { silent = true, nowait = true, desc = 'Show [c]ommands' })
+    vim.keymap.set('n', '<leader>lo', '<CMD>CocList outline<CR>',
+      { silent = true, nowait = true, desc = 'Show [o]utline' })
+    vim.keymap.set('n', '<leader>ls', '<CMD>CocList -I symbols<CR>',
+      { silent = true, nowait = true, desc = 'Search workspace [s]ymbols' })
+    vim.keymap.set('n', '<leader>lj', '<CMD>CocNext<CR>',
+      { silent = true, nowait = true, desc = 'Do default action for next item' })
+    vim.keymap.set('n', '<leader>lk', '<CMD>CocPrev<CR>',
+      { silent = true, nowait = true, desc = 'Do default action for previous item' })
+    vim.keymap.set('n', '<leader>lp', '<CMD>CocListResume<CR>',
+      { silent = true, nowait = true, desc = 'Resume latest CoC list' })
 
     -- [[ Autocommands ]]
     vim.api.nvim_create_augroup('CoCGroup', {})

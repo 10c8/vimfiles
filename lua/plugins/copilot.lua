@@ -11,8 +11,8 @@ return {
         auto_trigger = true,
         keymap = {
           accept = '<TAB>',
-          next = '<C-Shift-J>',
-          prev = '<C-Shift-K>',
+          next = '<C-S-j>',
+          prev = '<C-S-k>',
           dismiss = '<ESC>',
         },
       },

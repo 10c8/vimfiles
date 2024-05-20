@@ -1,7 +1,11 @@
 {
   "coc.preferences.useQuickfixForLocations": true,
   "coc.preferences.formatOnSaveFiletypes": [
+    "c",
+    "cpp",
     "css",
+    "elixir",
+    "gleam",
     "go",
     "graphql",
     "html",
@@ -20,6 +24,8 @@
     "yaml"
   ],
 
+  "semanticTokens.enable": true,
+
   // Diagnostics
   "diagnostic.hintSign": "",
   "diagnostic.infoSign": "",
@@ -33,7 +39,8 @@
     "gleam": {
       "command": "gleam",
       "args": ["lsp"],
-      "filetypes": ["gleam"]
+      "filetypes": ["gleam"],
+      "rootPatterns": ["gleam.toml", ".git"]
     },
     "godot": {
       "host": "127.0.0.1",
@@ -42,10 +49,24 @@
     }
   },
 
+  /* LSP settings */
   // Lua
   "Lua.diagnostics.globals": ["vim"],
   "Lua.runtime.version": "LuaJIT",
   "Lua.workspace.checkThirdParty": false,
   "Lua.workspace.library": ["${3rd}/luv/library"],
-  "Lua.completion.callSnippet": "Replace"
+  "Lua.completion.callSnippet": "Replace",
+
+  // Rust
+  "rust-analyzer.imports.granularity.enforce": true,
+  "rust-analyzer.inlayHints.parameterHints.enable": false,
+  "rust-analyzer.inlayHints.typeHints.enable": false,
+
+  // Tailwind
+  "tailwindCSS.emmetCompletions": true,
+  "tailwindCSS.includeLanguages": {
+    "vue": "html"
+  },
+  "tailwindCSS.lint.cssConflict": "error",
+  "tailwindCSS.headwind.runOnSave": true
 }

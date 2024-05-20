@@ -15,7 +15,7 @@ return {
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'onsails/lspkind-nvim',
-    'luckasRanarison/tailwind-tools.nvim',
+    -- 'luckasRanarison/tailwind-tools.nvim',
     -- { 'zbirenbaum/copilot-cmp', opts = {} },
     -- 'rafamadriz/friendly-snippets',
   },
@@ -34,11 +34,11 @@ return {
 
       completion = { completeopt = 'menu,menuone,noinsert' },
 
-      formatting = {
-        format = require('lspkind').cmp_format({
-          before = require('tailwind-tools.cmp').lspkind_format
-        })
-      },
+      -- formatting = {
+      --   format = require('lspkind').cmp_format({
+      --     before = require('tailwind-tools.cmp').lspkind_format
+      --   })
+      -- },
 
       -- [[ Keymaps ]]
       -- see `:help ins-completion`

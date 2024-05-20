@@ -43,7 +43,7 @@ return {
                 ['EX'] = 'E',
                 ['PROMPT'] = 'P',
                 ['SHELL'] = 'SH',
-                ['LUA'] = 'LUA',
+                ['LUA'] = 'L$',
               }
 
               return mode_map[mode] or mode
@@ -52,7 +52,7 @@ return {
         },
         lualine_b = {
           'branch',
-          {
+          { -- Gitsigns
             'diff',
             source = function()
               local gitsigns = vim.b.gitsigns_status_dict
@@ -78,6 +78,7 @@ return {
         },
         lualine_c = {},
         lualine_x = {
+          'coc#status()', -- coc.nvim status
           { 'encoding', fmt = trunc(nil, nil, 81, true) },
           {
             'fileformat',
@@ -90,7 +91,7 @@ return {
             fmt = trunc(nil, nil, 81, true),
           },
           'filetype',
-          'copilot',
+          'copilot', -- Copilot status
         },
         lualine_y = { 'progress' },
         lualine_z = { 'location' },
