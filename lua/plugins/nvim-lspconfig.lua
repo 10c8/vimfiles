@@ -113,10 +113,10 @@ return {
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     -- Enable folding with `kevinhwang91/nvim-ufo`
-    -- capabilities.textDocument.foldingRange = {
-    --   dynamicRegistration = false,
-    --   lineFoldingOnly = true,
-    -- }
+    capabilities.textDocument.foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    }
 
     -- LSP servers
     -- see `:help lspconfig-all`
