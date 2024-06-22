@@ -4,7 +4,6 @@ return {
   event = 'VeryLazy',
   dependencies = {
     'MunifTanjim/nui.nvim',
-    'nvim-treesitter/nvim-treesitter',
     -- 'rcarriga/nvim-notify',
   },
   opts = {
@@ -14,29 +13,29 @@ return {
         ['vim.lsp.util.stylize_markdown'] = true,
         ['cmp.entry.get_documentation'] = true,
       },
+      hover = {
+        silent = true,
+      },
     },
     presets = {
       bottom_search = true,
       command_palette = true,
       long_message_to_split = true,
+      inc_rename = false,
       lsp_doc_border = false,
     },
     routes = {
       {
-        -- Ignore "file written" messages
         filter = {
           event = 'msg_show',
-          kind = '',
           find = 'written',
         },
         opts = { skip = true },
       },
       {
-        -- Ignore "no information available" messages
         filter = {
           event = 'msg_show',
-          kind = '',
-          find = 'no information available',
+          find = 'method textDocument',
         },
         opts = { skip = true },
       },

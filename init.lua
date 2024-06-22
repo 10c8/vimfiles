@@ -70,6 +70,8 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0.03
   vim.g.neovide_cursor_trail_size = 0.5
 
+  vim.g.neovide_hide_mouse_when_typing = true
+
   -- Keymaps
   -- vim.keymap.set('v', '<C-c>', '"+y', { desc = 'Copy to clipboard' })
 
@@ -77,6 +79,11 @@ if vim.g.neovide then
   -- vim.api.nvim_set_keymap('!', '<C-v>', '<C-R>+', { noremap = true, silent = true })
   -- vim.api.nvim_set_keymap('i', '<C-v>', '<C-R>+', { noremap = true, silent = true })
   -- vim.api.nvim_set_keymap('v', '<C-v>', '<C-R>+', { noremap = true, silent = true })
+
+  -- Animations
+  vim.g.neovide_position_animation_length = 0.0
+  vim.g.neovide_scroll_animation_length = 0.0
+  vim.g.neovide_scroll_animation_far_lines = 0
 end
 
 -- [[ Keymaps ]]
@@ -89,10 +96,27 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', { noremap = true, desc = 'Move half page
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { noremap = true, desc = 'Move half page [d]own' })
 
 -- Diagnostic navigation
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { noremap = true, desc = 'Go to previous [d]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { noremap = true, desc = 'Go to next [d]iagnostic message' })
+vim.keymap.set('n', '[d', function()
+  local diag = vim.diagnostic.get_prev()
+  if diag then
+    vim.diagnostic.jump { diagnostic = diag }
+  end
+end, { noremap = true, desc = 'Go to previous [d]iagnostic message' })
+vim.keymap.set('n', ']d', function()
+  local diag = vim.diagnostic.get_next()
+  if diag then
+    vim.diagnostic.jump { diagnostic = diag }
+  end
+end, { noremap = true, desc = 'Go to next [d]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { noremap = true, desc = 'Show diagnostic [e]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { noremap = true, desc = 'Open diagnostic [q]uickfix list' })
+
+-- Fix the delay when closing a buffer
+vim.keymap.del('n', '<C-w><C-d>')
+vim.keymap.del('n', '<C-w>d')
+vim.keymap.del('i', '<C-w>')
+
+vim.keymap.set('n', '<leader>w', '<C-w>', { noremap = true })
 
 -- Buffers
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { noremap = true, desc = 'Move focus to the left window' })
@@ -125,8 +149,7 @@ vim.keymap.set('n', '<leader>vh', '<CMD>split<CR>', { noremap = true, desc = 'Sp
 vim.keymap.set('n', '<leader>vv', '<CMD>vsplit<CR>', { noremap = true, desc = 'Split the window [v]ertically' })
 
 -- Saving
-vim.keymap.set('n', '<S-w><S-w>', '<CMD>w<CR>', { noremap = true, desc = '[W]rite the current buffer' })
-vim.keymap.set('n', '<S-w><S-a>', '<CMD>writeas<CR>', { noremap = true, desc = '[W]rite the current buffer [a]s' })
+vim.keymap.set('n', 'zz', '<CMD>update<CR>', { noremap = true, desc = 'Update the current file' })
 
 -- [[ Autocommands ]]
 -- Highlight yanked text
@@ -135,17 +158,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('yank-highlight', { clear = true }),
   callback = vim.highlight.on_yank,
 })
-
--- Close neovide channel on exit
--- https://github.com/neovide/neovide/pull/2130
--- vim.api.nvim_create_autocmd('VimLeave', {
---   pattern = '*',
---   once = true,
---   nested = true,
---   callback = function()
---     vim.fn.chanclose(vim.g.neovide_channel_id)
---   end,
--- })
 
 -- [[ Plugins ]]
 -- Install lazy.nvim

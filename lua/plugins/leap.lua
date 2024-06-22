@@ -1,7 +1,7 @@
 return {
   'ggandor/leap.nvim',
   lazy = true,
-  event = 'BufRead',
+  event = 'VimEnter',
   dependencies = { 'tpope/vim-repeat' },
   config = function()
     local leap = require 'leap'

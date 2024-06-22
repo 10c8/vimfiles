@@ -5,6 +5,7 @@ return {
   opts = {
     scope = 'window',
     custom_colorcolumn = {
+      go = '120',
       markdown = '80',
       rust = '100',
     },
@@ -12,11 +13,11 @@ return {
       'help',
       'text',
       'lazy',
-      -- 'mason',
+      'mason',
       'checkhealth',
       'lspinfo',
       'noice',
-      -- 'Trouble',
+      'Trouble',
     },
   },
 }

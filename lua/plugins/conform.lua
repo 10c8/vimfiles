@@ -2,20 +2,46 @@ return {
   'stevearc/conform.nvim',
   lazy = true,
   event = 'BufReadPre',
-  opts = {
-    notify_on_error = false,
-    format_on_save = {
-      timeout_ms = 500,
-      lsp_fallback = true,
+  ft = {
+    'lua',
+    'python',
+    'javascript',
+    'javascriptreact',
+    'typescript',
+    'typescriptreact',
+    'vue',
+  },
+  keys = {
+    {
+      '<leader>lf',
+      function()
+        require('conform').format {
+          timeout_ms = 500,
+          lsp_fallback = true,
+          async = true,
+          quiet = true,
+        }
+      end,
+      desc = '[f]ormat document',
     },
+  },
+  opts = {
+    -- log_level = vim.log.levels.DEBUG,
     formatters_by_ft = {
       lua = { 'stylua' },
-      -- Conform can also run multiple formatters sequentially
-      -- python = { "isort", "black" },
-      --
-      -- You can use a sub-list to tell conform to run *until* a formatter
-      -- is found.
-      -- javascript = { { "prettierd", "prettier" } },
+      python = { 'black' },
+      javascript = { 'prettierd', 'prettier' },
+      javascriptreact = { 'prettierd', 'prettier' },
+      typescript = { 'prettierd', 'prettier' },
+      typescriptreact = { 'prettierd', 'prettier' },
+      vue = { 'prettierd', 'prettier' },
+    },
+    notify_on_error = false,
+    format_after_save = {
+      timeout_ms = 500,
+      lsp_fallback = true,
+      async = true,
+      quiet = true,
     },
   },
 }

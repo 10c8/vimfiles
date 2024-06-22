@@ -57,6 +57,9 @@
   "Lua.workspace.library": ["${3rd}/luv/library"],
   "Lua.completion.callSnippet": "Replace",
 
+  // CSS
+  "scss.lint.unknownAtRules": "ignore",
+
   // Rust
   "rust-analyzer.imports.granularity.enforce": true,
   "rust-analyzer.inlayHints.parameterHints.enable": false,

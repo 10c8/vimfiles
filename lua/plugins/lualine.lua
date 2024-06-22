@@ -52,7 +52,8 @@ return {
         },
         lualine_b = {
           'branch',
-          { -- Gitsigns
+          {
+            -- Gitsigns
             'diff',
             source = function()
               local gitsigns = vim.b.gitsigns_status_dict
@@ -67,7 +68,10 @@ return {
           },
           {
             'diagnostics',
-            sources = { 'coc' },
+            sources = {
+              'nvim_lsp',
+              -- 'coc',
+            },
             symbols = {
               error = ' ',
               warn = ' ',
@@ -78,7 +82,6 @@ return {
         },
         lualine_c = {},
         lualine_x = {
-          'coc#status()', -- coc.nvim status
           { 'encoding', fmt = trunc(nil, nil, 81, true) },
           {
             'fileformat',

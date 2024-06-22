@@ -1,15 +1,36 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    'williamboman/mason.nvim',
+    {
+      'williamboman/mason.nvim',
+      run = ':MasonUpdate',
+      opts = {},
+    },
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-    { 'j-hui/fidget.nvim', opts = {} }, -- Adds a neat little notification for LSPs
+    {
+      'j-hui/fidget.nvim',
+      opts = {},
+    },
+    'hrsh7th/nvim-cmp',
   },
   opts = {
     inlay_hints = { enabled = true },
+    servers = {
+      'cssls',
+      'emmet_language_server',
+      'gopls',
+      'html',
+      'lua_ls',
+      'marksman',
+      'tailwindcss',
+      'taplo',
+      'tsserver',
+      'volar',
+      'wgsl_analyzer',
+    },
   },
-  config = function()
+  config = function(_, opts)
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
       callback = function(event)
@@ -79,7 +100,7 @@ return {
 
         -- Inlay hints
         if client and client.server_capabilities.inlayHintProvider then
-          vim.lsp.inlay_hint.enable(event.buf, true)
+          vim.lsp.inlay_hint.enable(true)
         end
       end,
     })
@@ -92,10 +113,10 @@ return {
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     -- Enable folding with `kevinhwang91/nvim-ufo`
-    capabilities.textDocument.foldingRange = {
-      dynamicRegistration = false,
-      lineFoldingOnly = true,
-    }
+    -- capabilities.textDocument.foldingRange = {
+    --   dynamicRegistration = false,
+    --   lineFoldingOnly = true,
+    -- }
 
     -- LSP servers
     -- see `:help lspconfig-all`
@@ -120,56 +141,54 @@ return {
     }
 
     -- see `:Mason`
-    require('mason').setup()
-
-    local ensure_installed = vim.tbl_keys(servers or {})
-    vim.list_extend(ensure_installed, {
-      'cbfmt',
-      'clang-format',
-      'clangd',
-      -- 'emmet-language-server',
-      'lua-language-server',
-      'marksman',
-      -- 'prettierd',
-      'ruff-lsp',
-      'selene',
-      'stylua',
-      -- 'tailwindcss-language-server',
-      'taplo',
-      'wgsl-analyzer',
-    })
-
-    require('mason-tool-installer').setup {
-      ensure_installed = ensure_installed,
-    }
-
     require('mason-lspconfig').setup {
+      ensure_installed = opts.servers,
       handlers = {
         function(server_name)
+          -- local util = require 'lspconfig/util'
+
           local server = servers[server_name] or {}
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
 
+          -- TypeScript
+          if server_name == 'tsserver' then
+            local mason_registry = require 'mason-registry'
+            local vls_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
+
+            server.init_options = {
+              plugins = {
+                {
+                  name = '@vue/typescript-plugin',
+                  location = vls_path,
+                  languages = { 'vue' },
+                },
+              },
+            }
+            server.filetypes = {
+              'javascript',
+              'javascriptreact',
+              'typescript',
+              'typescriptreact',
+              'vue',
+            }
+          end
+
+          -- Vue
+          -- if server_name == 'volar' then
+          --   server.init_options = {
+          --     vue = {
+          --       hybridMode = false,
+          --     },
+          --   }
+          -- end
+
+          -- CSS
+          if server_name == 'cssls' then
+            server.filetypes = { 'css' }
+          end
+
           require('lspconfig')[server_name].setup(server)
         end,
-
-        -- Emmet
-        -- ['emmet_language_server'] = function()
-        --   require('lspconfig').emmet_language_server.setup {
-        --     filetypes = {
-        --       'css',
-        --       'html',
-        --       'javascript',
-        --       'javascriptreact',
-        --       'less',
-        --       'sass',
-        --       'scss',
-        --       'pug',
-        --       'typescriptreact',
-        --       'vue',
-        --       'svelte',
-        --     },
-        --   }
-        -- end,
       },
     }
   end,

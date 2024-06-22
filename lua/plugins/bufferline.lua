@@ -1,6 +1,7 @@
 return {
   'akinsho/bufferline.nvim',
-  commit = '64e2c5d',
+  lazy = true,
+  event = 'VimEnter',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     local bufferline = require 'bufferline'
@@ -9,7 +10,7 @@ return {
       options = {
         style_preset = bufferline.style_preset.no_italic,
         indicator = {
-          style = 'underline',
+          style = 'none',
         },
         diagnostics = 'nvim_lsp',
         diagnostics_indicator = function(_, _, diagnostics_dict, context)
@@ -24,7 +25,7 @@ return {
           end
           return s
         end,
-        custom_filter = function(buf_number, _)
+        custom_filter = function(_buf_number, _)
           -- Hide the `mini.files` buffer
           return true -- TODO
         end,

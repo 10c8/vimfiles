@@ -2,24 +2,6 @@ return {
   'nvim-treesitter/nvim-treesitter',
   lazy = true,
   event = 'BufReadPre',
-  ft = {
-    'bash',
-    'c',
-    -- 'html',
-    -- 'javascript',
-    -- 'json',
-    'go',
-    'lua',
-    'markdown',
-    -- 'regex',
-    'rust',
-    'toml',
-    -- 'typescript',
-    -- 'vue',
-    -- 'yaml',
-    'vim',
-    'vimdoc',
-  },
   build = ':TSUpdate',
   dependencies = {
     {
@@ -44,21 +26,21 @@ return {
   },
   config = function()
     -- see `:help nvim-treesitter`
+    require('nvim-treesitter.install').compilers = { 'clang' }
 
     ---@diagnostic disable-next-line: missing-fields
     require('nvim-treesitter.configs').setup {
       ensure_installed = {
         'bash',
         'c',
-        -- 'html',
-        -- 'javascript',
+        'html',
+        'javascript',
         'lua',
         'markdown',
-        -- 'regex',
+        'regex',
         'rust',
         'toml',
-        -- 'typescript',
-        'vim',
+        'typescript',
         'vimdoc',
       },
       auto_install = true,
