@@ -115,8 +115,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { noremap = true, de
 vim.keymap.del('n', '<C-w><C-d>')
 vim.keymap.del('n', '<C-w>d')
 vim.keymap.del('i', '<C-w>')
-
-vim.keymap.set('n', '<leader>w', '<C-w>', { noremap = true })
+-- vim.keymap.set('n', '<leader>wd', '<C-w>', { noremap = true })
 
 -- Buffers
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { noremap = true, desc = 'Move focus to the left window' })

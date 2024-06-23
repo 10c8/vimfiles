@@ -1,5 +1,6 @@
 return {
   'echasnovski/mini.nvim',
+  version = false,
   config = function()
     -- AI
     -- Better [A]round/[I]nside textobjects
@@ -18,10 +19,6 @@ return {
     -- - sd'   - [S]urround [D]elete [']quotes
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup()
-
-    -- Trailspace
-    -- Trim all trailing whitespace with `MiniTrailspace.trim()`.
-    require('mini.trailspace').setup()
 
     -- Pairs
     -- Automatically close pairs (brackets, quotes, etc.)
@@ -45,7 +42,6 @@ return {
     -- Sessions
     -- Save and restore sessions
     local sessions = require 'mini.sessions'
-
     sessions.setup {
       autoread = true,
       autowrite = true,

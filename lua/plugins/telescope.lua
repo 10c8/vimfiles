@@ -15,6 +15,7 @@ return {
     },
     { 'nvim-telescope/telescope-ui-select.nvim' },
     { 'debugloop/telescope-undo.nvim' },
+    { 'aznhe21/actions-preview.nvim' },
   },
   config = function()
     local telescope = require 'telescope'
@@ -35,9 +36,18 @@ return {
     pcall(telescope.load_extension, 'ui-select')
     pcall(telescope.load_extension, 'undo')
 
+    local actions_preview = require 'actions-preview'
+    actions_preview.setup {
+      diff = {
+        algorithm = 'patience',
+        ignore_whitespace = true,
+      },
+      telescope = require('telescope.themes').get_dropdown { winblend = 10 },
+    }
+
     -- [[ Keymaps ]]
     -- see `:help telescope.builtin`
-    vim.keymap.set('n', '<leader>sc', '<CMD>Telescope neoclip<CR>', { desc = '[s]earch [c]lipboard' })
+    -- vim.keymap.set('n', '<leader>sc', '<CMD>Telescope neoclip<CR>', { desc = '[s]earch [c]lipboard' })
     vim.keymap.set('n', '<leader>sd', ts_builtin.diagnostics, { desc = '[s]earch [d]iagnostics' })
     vim.keymap.set('n', '<leader>sf', function()
       ts_builtin.find_files { hidden = true }
@@ -71,6 +81,9 @@ return {
 
     vim.keymap.set('n', '<leader>sn', function()
       ts_builtin.find_files { cwd = vim.fn.stdpath 'config' }
-    end, { desc = '[s]earch [n]eovim files' })
+    end, { desc = '[s]earch config files' })
+
+    -- actions-preview
+    vim.keymap.set('n', '<leader>ca', actions_preview.code_actions, { desc = '[c]ode [a]ction' })
   end,
 }

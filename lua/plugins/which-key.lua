@@ -14,6 +14,8 @@ return {
       -- ['<leader>l'] = { name = 'CoC [l]ist', _ = 'which_key_ignore', },
       ['<leader>m'] = { name = '[m]inimap', _ = 'which_key_ignore' },
       ['<leader>p'] = { name = '[p]roject', _ = 'which_key_ignore' },
+      ['<leader>r'] = { name = 'Search and [r]eplace', _ = 'which_key_ignore' },
+      ['<leader>rb'] = { name = 'Search and [r]eplace (multi-[b]uffer)', _ = 'which_key_ignore' },
       ['<leader>s'] = { name = '[s]earch', _ = 'which_key_ignore' },
       ['<leader>t'] = { name = '[t]erminal', _ = 'which_key_ignore' },
       ['<leader>T'] = { name = '[T]ODOs / Tailwind', _ = 'which_key_ignore' },

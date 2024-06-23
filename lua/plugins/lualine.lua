@@ -31,19 +31,19 @@ return {
               local mode_map = {
                 ['NORMAL'] = 'N',
                 ['VISUAL'] = 'V',
-                ['V-LINE'] = 'VL',
-                ['V-BLOCK'] = 'VB',
+                ['V-LINE'] = 'L',
+                ['V-BLOCK'] = 'B',
                 ['INSERT'] = 'I',
                 ['COMMAND'] = 'C',
                 ['TERMINAL'] = 'T',
                 ['REPLACE'] = 'R',
                 ['SELECT'] = 'S',
-                ['S-LINE'] = 'SL',
-                ['S-BLOCk'] = 'SB',
-                ['EX'] = 'E',
+                ['S-LINE'] = 'L',
+                ['S-BLOCk'] = 'B',
+                ['EX'] = 'X',
                 ['PROMPT'] = 'P',
-                ['SHELL'] = 'SH',
-                ['LUA'] = 'L$',
+                ['SHELL'] = '$',
+                ['LUA'] = '!',
               }
 
               return mode_map[mode] or mode
