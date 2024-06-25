@@ -1,35 +1,32 @@
+-- [[
+-- Mini plugins.
+--  - AI: Better [A]round/[I]nside textobjects.
+--  - Surround: Add/delete/replace surroundings (brackets, quotes, etc.)
+--  - Pairs: Automatically close pairs (brackets, quotes, etc.)
+--  - Move: Move lines and blocks of text.
+--  - Trailspace: Highlight trailing whitespaces.
+--  - Files: Simple file explorer.
+--  - Sessions: Save and restore sessions.
+-- ]]
+
 return {
   'echasnovski/mini.nvim',
   version = false,
   config = function()
-    -- AI
-    -- Better [A]round/[I]nside textobjects
-    --
-    --  - va)  - [V]isually select [A]round [)]paren
-    --  - yinq - [Y]ank [I]nside [N]ext [']quote
-    --  - ci'  - [C]hange [I]nside [']quote
-    require('mini.ai').setup {
-      n_lines = 500,
-    }
+    -- va)  - [V]isually select [A]round [)]paren
+    -- yinq - [Y]ank [I]nside [N]ext [']quote
+    -- ci'  - [C]hange [I]nside [']quote
+    require('mini.ai').setup { n_lines = 500 }
 
-    -- Surround
-    -- Add/delete/replace surroundings (brackets, quotes, etc.)
-    --
-    -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-    -- - sd'   - [S]urround [D]elete [']quotes
-    -- - sr)'  - [S]urround [R]eplace [)] [']
+    -- saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+    -- sd'   - [S]urround [D]elete [']quotes
+    -- sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup()
 
-    -- Pairs
-    -- Automatically close pairs (brackets, quotes, etc.)
     require('mini.pairs').setup()
-
-    -- Move
-    -- Move lines and blocks of text
     require('mini.move').setup()
+    require('mini.trailspace').setup()
 
-    -- Files
-    -- Simple file explorer
     local files = require 'mini.files'
     files.setup {
       content = {
@@ -39,8 +36,6 @@ return {
       },
     }
 
-    -- Sessions
-    -- Save and restore sessions
     local sessions = require 'mini.sessions'
     sessions.setup {
       autoread = true,

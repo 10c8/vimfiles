@@ -1,3 +1,7 @@
+-- [[
+-- GitHub Copilot.
+-- ]]
+
 return {
   'zbirenbaum/copilot.lua',
   lazy = true,

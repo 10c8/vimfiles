@@ -69,6 +69,9 @@ if vim.g.neovide then
 
   vim.g.neovide_cursor_animation_length = 0.03
   vim.g.neovide_cursor_trail_size = 0.5
+  vim.g.neovide_position_animation_length = 0.0
+  vim.g.neovide_scroll_animation_length = 0.0
+  vim.g.neovide_scroll_animation_far_lines = 0
 
   vim.g.neovide_hide_mouse_when_typing = true
 
@@ -79,11 +82,6 @@ if vim.g.neovide then
   -- vim.api.nvim_set_keymap('!', '<C-v>', '<C-R>+', { noremap = true, silent = true })
   -- vim.api.nvim_set_keymap('i', '<C-v>', '<C-R>+', { noremap = true, silent = true })
   -- vim.api.nvim_set_keymap('v', '<C-v>', '<C-R>+', { noremap = true, silent = true })
-
-  -- Animations
-  vim.g.neovide_position_animation_length = 0.0
-  vim.g.neovide_scroll_animation_length = 0.0
-  vim.g.neovide_scroll_animation_far_lines = 0
 end
 
 -- [[ Keymaps ]]

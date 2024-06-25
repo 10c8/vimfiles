@@ -1,14 +1,17 @@
+-- [[
+-- Preview window for LSP symbol definitions.
+-- ]]
+
 return {
   'rmagatti/goto-preview',
   lazy = true,
-  event = 'BufRead',
+  event = 'LspAttach',
   config = function()
     local gp = require 'goto-preview'
 
     gp.setup {
       default_mappings = false,
       opacity = 0,
-      -- dismiss_on_move = true,
       preview_window_title = {
         enable = true,
         position = 'center',
@@ -16,6 +19,7 @@ return {
     }
 
     -- [[ Keymaps ]]
+    -- TODO: Figure out the proper way to bind `q` to close the preview popup
     vim.keymap.set('n', 'gd', function()
       gp.goto_preview_definition {}
 

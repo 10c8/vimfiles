@@ -1,3 +1,7 @@
+-- [[
+-- UI for managing LSP diagnostics.
+-- ]]
+
 return {
   'folke/trouble.nvim',
   lazy = true,

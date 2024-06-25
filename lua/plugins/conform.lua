@@ -1,3 +1,7 @@
+-- [[
+-- Configs for code formatters.
+-- ]]
+
 return {
   'stevearc/conform.nvim',
   lazy = true,

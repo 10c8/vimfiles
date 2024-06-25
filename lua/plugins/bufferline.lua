@@ -1,3 +1,7 @@
+-- [[
+-- A snazzy bufferline for Neovim.
+-- ]]
+
 return {
   'akinsho/bufferline.nvim',
   lazy = true,

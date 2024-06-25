@@ -1,3 +1,7 @@
+-- [[
+-- Syntax highlighting and text objects.
+-- ]]
+
 return {
   'nvim-treesitter/nvim-treesitter',
   lazy = true,

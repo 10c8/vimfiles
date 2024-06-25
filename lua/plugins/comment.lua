@@ -1,3 +1,7 @@
+-- [[
+-- Smart code comments.
+-- ]]
+
 return {
   'numToStr/Comment.nvim',
   lazy = true,

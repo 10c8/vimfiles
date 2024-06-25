@@ -1,3 +1,7 @@
+-- [[
+-- Dims unused symbols in the code.
+-- ]]
+
 return {
   'zbirenbaum/neodim',
   lazy = true,

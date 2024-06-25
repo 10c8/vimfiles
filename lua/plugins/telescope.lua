@@ -1,3 +1,7 @@
+-- [[
+-- Fuzzy finder over `fzf`, `ripgrep`, and others.
+-- ]]
+
 return {
   'nvim-telescope/telescope.nvim',
   lazy = true,

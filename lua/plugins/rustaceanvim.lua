@@ -1,3 +1,7 @@
+-- [[
+-- Rust LSP.
+-- ]]
+
 return {
   'mrcjkb/rustaceanvim',
   lazy = true,
@@ -27,11 +31,9 @@ return {
 
     -- [[ Keymaps ]]
     -- Open `cargo.toml`
-    vim.keymap.set('n', '<leader>rct', '<cmd>RustLsp openCargo<CR>',
-      { silent = true, desc = '[r]ust: Edit [c]argo.[t]oml' })
+    vim.keymap.set('n', '<leader>rct', '<cmd>RustLsp openCargo<CR>', { silent = true, desc = '[r]ust: Edit [c]argo.[t]oml' })
 
     -- Expand macros recursively
-    vim.keymap.set('n', '<leader>rem', '<cmd>RustLsp expandMacro<CR>',
-      { silent = true, desc = '[r]ust: [e]xpand [m]acros recursively' })
+    vim.keymap.set('n', '<leader>rem', '<cmd>RustLsp expandMacro<CR>', { silent = true, desc = '[r]ust: [e]xpand [m]acros recursively' })
   end,
 }

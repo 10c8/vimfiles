@@ -1,3 +1,7 @@
+-- [[
+-- Indentation guides (with cool colors).
+-- ]]
+
 local highlight = {
   'RainbowViolet',
   'RainbowBlue',

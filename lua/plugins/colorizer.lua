@@ -1,3 +1,7 @@
+-- [[
+-- Highlights colors in code.
+-- ]]
+
 local ft = {
   'html',
   'css',
@@ -10,7 +14,6 @@ local ft = {
 return {
   'NvChad/nvim-colorizer.lua',
   lazy = true,
-  event = 'BufRead',
   ft = ft,
   opts = {
     filetypes = ft,

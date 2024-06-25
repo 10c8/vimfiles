@@ -1,3 +1,7 @@
+-- [[
+-- Better UI for a bunch of LSP stuff.
+-- ]]
+
 return {
   'folke/noice.nvim',
   lazy = true,

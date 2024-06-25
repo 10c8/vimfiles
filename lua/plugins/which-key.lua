@@ -1,7 +1,11 @@
+-- [[
+-- Lists possible keybindings when you start typing a command.
+-- ]]
+
 return {
   'folke/which-key.nvim',
   lazy = true,
-  event = 'VimEnter',
+  event = 'VeryLazy',
   config = function()
     local wk = require 'which-key'
 

@@ -1,3 +1,7 @@
+-- [[
+-- Auto-completions.
+-- ]]
+
 return {
   'hrsh7th/nvim-cmp',
   event = 'InsertEnter',
@@ -15,7 +19,39 @@ return {
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'onsails/lspkind-nvim',
-    'luckasRanarison/tailwind-tools.nvim',
+    {
+      'luckasRanarison/tailwind-tools.nvim',
+      lazy = true,
+      ft = {
+        'html',
+        'css',
+        'scss',
+        'javascriptreact',
+        'typescriptreact',
+        'vue',
+      },
+      dependencies = {
+        'nvim-treesitter/nvim-treesitter',
+      },
+      config = function()
+        local tt = require 'tailwind-tools'
+
+        tt.setup {
+          document_color = {
+            enabled = true,
+            kind = 'inline',
+            inline_symbol = '󰝤 ',
+            debounce = 200,
+          },
+          conceal = {
+            enabled = false,
+          },
+        }
+
+        -- Keymaps
+        vim.keymap.set('n', '<leader>TS', '<cmd>:TailwindSort<cr>', { noremap = true, silent = true })
+      end,
+    },
     -- { 'zbirenbaum/copilot-cmp', opts = {} },
     -- 'rafamadriz/friendly-snippets',
   },
@@ -35,11 +71,11 @@ return {
 
       completion = { completeopt = 'menu,menuone,noinsert' },
 
-      formatting = {
-        format = require('lspkind').cmp_format {
-          before = require('tailwind-tools.cmp').lspkind_format,
-        },
-      },
+      -- formatting = {
+      --   format = require('lspkind').cmp_format {
+      --     before = require('tailwind-tools.cmp').lspkind_format,
+      --   },
+      -- },
 
       -- [[ Keymaps ]]
       -- see `:help ins-completion`

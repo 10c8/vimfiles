@@ -1,3 +1,7 @@
+-- [[
+-- Follow links under the cursor with `gx`.
+-- ]]
+
 return {
   'chrishrb/gx.nvim',
   lazy = true,

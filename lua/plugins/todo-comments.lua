@@ -1,3 +1,7 @@
+-- [[
+-- Highlights and lists todo, fixme, hack, etc., comments.
+-- ]]
+
 return {
   'folke/todo-comments.nvim',
   lazy = true,

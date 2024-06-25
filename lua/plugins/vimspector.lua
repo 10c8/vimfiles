@@ -1,3 +1,7 @@
+-- [[
+-- Debuggers.
+-- ]]
+
 return {
   'puremourning/vimspector',
   lazy = true,

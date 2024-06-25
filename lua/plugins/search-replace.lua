@@ -1,11 +1,13 @@
+-- [[
+-- Keymaps for search and replace.
+-- ]]
+
 return {
   'roobert/search-replace.nvim',
   lazy = true,
   event = 'BufRead',
   config = function()
     require('search-replace').setup {}
-
-    vim.o.inccommand = 'split'
 
     -- [[ Keymaps ]]
     vim.keymap.set('n', '<leader>rs', '<CMD>SearchReplaceSingleBufferSelections<CR>', { desc = 'Search and [r]eplace: [s]election list', silent = true })

@@ -1,3 +1,7 @@
+-- [[
+-- Line length limit indicator.
+-- ]]
+
 return {
   'm4xshen/smartcolumn.nvim',
   lazy = true,

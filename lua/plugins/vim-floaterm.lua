@@ -1,3 +1,7 @@
+-- [[
+-- Embedded floating terminal (used for `lazygit` as well.)
+-- ]]
+
 return {
   'voldikss/vim-floaterm',
   lazy = true,

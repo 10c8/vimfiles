@@ -1,3 +1,7 @@
+-- [[
+-- Go LSP.
+-- ]]
+
 return {
   'ray-x/go.nvim',
   -- '10c8/go.nvim',
