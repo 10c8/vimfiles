@@ -9,6 +9,7 @@ return {
   opts = {
     scope = 'window',
     custom_colorcolumn = {
+      lua = '160',
       go = '120',
       markdown = '80',
       rust = '100',

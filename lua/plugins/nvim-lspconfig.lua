@@ -2,6 +2,20 @@
 -- Configs for the Neovim LSP client.
 -- ]]
 
+local must_install = {
+  'cssls',
+  'emmet_language_server',
+  'gopls',
+  'html',
+  'lua_ls',
+  'marksman',
+  'tailwindcss',
+  'taplo',
+  'tsserver',
+  'volar',
+  'wgsl_analyzer',
+}
+
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
@@ -20,19 +34,7 @@ return {
   },
   opts = {
     inlay_hints = { enabled = true },
-    servers = {
-      'cssls',
-      'emmet_language_server',
-      'gopls',
-      'html',
-      'lua_ls',
-      'marksman',
-      'tailwindcss',
-      'taplo',
-      'tsserver',
-      'volar',
-      'wgsl_analyzer',
-    },
+    servers = must_install,
   },
   config = function(_, opts)
     vim.api.nvim_create_autocmd('LspAttach', {

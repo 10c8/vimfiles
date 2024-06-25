@@ -87,6 +87,23 @@ return {
       ts_builtin.find_files { cwd = vim.fn.stdpath 'config' }
     end, { desc = '[s]earch config files' })
 
+    vim.keymap.set('n', '<C-t>', function()
+      vim.cmd 'enew'
+
+      require('telescope.builtin').find_files {
+        attach_mappings = function(_, map)
+          map('i', '<CR>', function(prompt_bufnr)
+            local entry = require('telescope.actions.state').get_selected_entry()
+            require('telescope.actions').close(prompt_bufnr)
+
+            vim.cmd('edit ' .. entry.path)
+          end)
+
+          return true
+        end,
+      }
+    end, { noremap = true, desc = 'Edit in a new buffer' })
+
     -- actions-preview
     vim.keymap.set('n', '<leader>ca', actions_preview.code_actions, { desc = '[c]ode [a]ction' })
   end,
