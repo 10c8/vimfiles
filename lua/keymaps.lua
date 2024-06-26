@@ -16,9 +16,8 @@ end
 -- [[ Keymaps ]]
 local keymaps = {
   -- Neovim
-  ['ESC'] = { 'Clear search highlights', 'n', '<CMD>nohlsearch<CR>' },
-  ['<C-u>'] = { 'Move half page [u]p', 'n', '<C-u>zz' },
-  ['<C-d>'] = { 'Move half page [d]own', 'n', '<C-d>zz' },
+  ['<C-u>'] = { 'Scroll half page [u]p', 'n', '<C-u>zz' },
+  ['<C-d>'] = { 'Scroll half page [d]own', 'n', '<C-d>zz' },
   ['[d'] = { 'Go to previous [d]iagnostic message', 'n', prev_diag_msg },
   [']d'] = { 'Go to next [d]iagnostic message', 'n', next_diag_msg },
   ['<leader>e'] = { 'Show diagnostic [e]rror messages', 'n', vim.diagnostic.open_float },
@@ -35,6 +34,9 @@ local keymaps = {
   ['<leader>vv'] = { 'Split the window [v]ertically', 'n', '<CMD>vsplit<CR>' },
   ['zz'] = { 'Update the current file', 'n', '<CMD>update<CR>' },
 }
+
+-- Clear search highlights on `Esc`
+vim.keymap.set('n', '<ESC>', '<CMD>nohlsearch<CR>')
 
 -- Fix the delay when closing a buffer using `<C-w>`
 vim.keymap.del('n', '<C-w><C-d>')

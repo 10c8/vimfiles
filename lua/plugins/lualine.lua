@@ -72,10 +72,7 @@ return {
           },
           {
             'diagnostics',
-            sources = {
-              'nvim_lsp',
-              -- 'coc',
-            },
+            sources = { 'nvim_lsp' },
             symbols = {
               error = ' ',
               warn = ' ',

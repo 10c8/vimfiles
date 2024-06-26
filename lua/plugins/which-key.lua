@@ -15,8 +15,6 @@ return {
       ['<leader>c'] = { name = '[c]ode', _ = 'which_key_ignore' },
       ['<leader>d'] = { name = '[d]ocument', _ = 'which_key_ignore' },
       ['<leader>D'] = { name = '[D]ebugger', _ = 'which_key_ignore' },
-      -- ['<leader>l'] = { name = 'CoC [l]ist', _ = 'which_key_ignore', },
-      ['<leader>m'] = { name = '[m]inimap', _ = 'which_key_ignore' },
       ['<leader>p'] = { name = '[p]roject', _ = 'which_key_ignore' },
       ['<leader>r'] = { name = 'Search and [r]eplace', _ = 'which_key_ignore' },
       ['<leader>rb'] = { name = 'Search and [r]eplace (multi-[b]uffer)', _ = 'which_key_ignore' },
