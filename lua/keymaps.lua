@@ -44,7 +44,8 @@ vim.keymap.del('n', '<C-w>d')
 vim.keymap.del('i', '<C-w>')
 
 -- Apply keymaps
-for k, v in pairs(keymaps) do
-  local desc, modes, callback = unpack(v)
-  vim.keymap.set(modes, k, callback, { noremap = true, desc = desc })
+for keys, data in pairs(keymaps) do
+  local desc, modes, callback = unpack(data)
+
+  vim.keymap.set(modes, keys, callback, { noremap = true, desc = desc })
 end

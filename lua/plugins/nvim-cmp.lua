@@ -60,7 +60,7 @@ return {
     local cmp = require 'cmp'
 
     local luasnip = require 'luasnip'
-    luasnip.config.setup()
+    luasnip.config.setup {}
 
     cmp.setup {
       snippet = {

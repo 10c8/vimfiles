@@ -21,6 +21,17 @@ return {
       relative_directions = true,
     })
 
+    -- Highlight colors
+    local colors = {
+      fg = '#282828',
+      bg = '#ebdbb2',
+      bold = true,
+      nocombine = true,
+    }
+
+    vim.api.nvim_set_hl(0, 'LeapLabel', colors)
+    vim.api.nvim_set_hl(0, 'LeapLabelPrimary', colors)
+
     -- [[ Keymaps ]]
     vim.keymap.set({ 'n', 'x', 'o' }, 'f', '<Plug>(leap-forward)', { desc = 'Leap forward' })
     vim.keymap.set({ 'n', 'x', 'o' }, 'F', '<Plug>(leap-backward)', { desc = 'Leap backward' })

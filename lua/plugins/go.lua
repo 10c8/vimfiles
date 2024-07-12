@@ -17,10 +17,10 @@ return {
     require('go').setup()
 
     -- [[ Autocommands ]]
-    local go_group = vim.api.nvim_create_augroup('GoFmt', {})
+    local group = vim.api.nvim_create_augroup('GoFmt', {})
 
     vim.api.nvim_create_autocmd('BufWritePre', {
-      group = go_group,
+      group = group,
       pattern = '*.go',
       callback = function()
         require('go.format').goimports()

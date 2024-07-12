@@ -9,7 +9,7 @@ return {
   config = function()
     local wk = require 'which-key'
 
-    wk.setup()
+    wk.setup {}
 
     wk.register {
       ['<leader>c'] = { name = '[c]ode', _ = 'which_key_ignore' },

@@ -1,7 +1,8 @@
+/lazy-lock.json
+/neovide_backtraces.log
+
 .luarc.json
 nvim
-
-lazy-lock.json
 
 .session.vim
 

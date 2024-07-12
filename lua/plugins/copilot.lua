@@ -13,11 +13,13 @@ return {
       suggestion = {
         enabled = true,
         auto_trigger = true,
+        debounce = 70,
         keymap = {
           accept = '<TAB>',
+          accept_line = '<C-TAB>',
           next = '<C-S-j>',
           prev = '<C-S-k>',
-          dismiss = '<ESC>',
+          dismiss = '<C-c>',
         },
       },
       filetypes = {

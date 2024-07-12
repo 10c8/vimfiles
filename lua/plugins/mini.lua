@@ -12,6 +12,11 @@
 return {
   'echasnovski/mini.nvim',
   version = false,
+  lazy = true,
+  event = 'VimEnter',
+  specs = {
+    { 'nvim-tree/nvim-web-devicons', enabled = false, optional = true },
+  },
   config = function()
     -- va)  - [V]isually select [A]round [)]paren
     -- yinq - [Y]ank [I]nside [N]ext [']quote
@@ -21,11 +26,13 @@ return {
     -- saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
     -- sd'   - [S]urround [D]elete [']quotes
     -- sr)'  - [S]urround [R]eplace [)] [']
-    require('mini.surround').setup()
+    require('mini.surround').setup {}
 
-    require('mini.pairs').setup()
-    require('mini.move').setup()
-    require('mini.trailspace').setup()
+    require('mini.pairs').setup {}
+
+    require('mini.move').setup {}
+
+    require('mini.trailspace').setup {}
 
     local files = require 'mini.files'
     files.setup {
@@ -43,9 +50,19 @@ return {
       file = '.session.vim',
     }
 
+    local icons = require 'mini.icons'
+
+    package.preload['nvim-web-devicons'] = function()
+      package.loaded['nvim-web-devicons'] = {}
+      icons.mock_nvim_web_devicons()
+      return package.loaded['nvim-web-devicons']
+    end
+
+    icons.setup {}
+
     -- [[ Keymaps ]]
     -- Open mini files explorer
-    vim.keymap.set('', '<C-b>', function()
+    vim.keymap.set('n', '<C-b>', function()
       if not files.close() then
         files.open()
       end

@@ -4,7 +4,8 @@
 
 return {
   'mrcjkb/rustaceanvim',
-  lazy = true,
+  version = '^4',
+  lazy = false,
   ft = { 'rust' },
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -12,6 +13,11 @@ return {
   config = function()
     vim.g.rustaceanvim = {
       server = {
+        on_attach = function(_, _)
+          -- [[ Keymaps ]]
+          -- Expand macros recursively
+          vim.keymap.set('n', '<leader>rem', '<cmd>RustLsp expandMacro<CR>', { silent = true, desc = '[r]ust: [e]xpand [m]acros recursively' })
+        end,
         settings = {
           ['rust-analyzer'] = {
             imports = {
@@ -28,12 +34,5 @@ return {
 
     -- Underline mutable values
     vim.api.nvim_set_hl(0, '@lsp.mod.mutable', { underline = true })
-
-    -- [[ Keymaps ]]
-    -- Open `cargo.toml`
-    vim.keymap.set('n', '<leader>rct', '<cmd>RustLsp openCargo<CR>', { silent = true, desc = '[r]ust: Edit [c]argo.[t]oml' })
-
-    -- Expand macros recursively
-    vim.keymap.set('n', '<leader>rem', '<cmd>RustLsp expandMacro<CR>', { silent = true, desc = '[r]ust: [e]xpand [m]acros recursively' })
   end,
 }

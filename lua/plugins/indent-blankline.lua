@@ -36,7 +36,11 @@ return {
       indent = {
         tab_char = '▎',
       },
-      scope = { highlight = highlight },
+      scope = {
+        highlight = highlight,
+        show_start = false,
+        show_end = false,
+      },
     }
 
     hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)

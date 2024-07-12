@@ -1,12 +1,18 @@
 -- [[ Autocommands ]]
 local autocmds = {
-  ['TextYankPost'] = { 'Highlight yanked text', 'yank-hl', vim.highlight.on_yank },
+  ['Highlight yanked text'] = { 'TextYankPost', 'yank-hl', vim.highlight.on_yank },
+  ['Set indentation to 2 spaces'] = {
+    'Filetype',
+    'indent-set',
+    'setlocal shiftwidth=2, tabstop=2',
+    { 'html', 'css', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'lua' },
+  },
 }
 
 -- Create autocommands
 local augroups = {}
-for event, data in pairs(autocmds) do
-  local desc, group, callback = unpack(data)
+for desc, data in pairs(autocmds) do
+  local event, group, callback, pattern = unpack(data)
 
   local augroup = augroups[group]
   if not augroup then
@@ -14,5 +20,5 @@ for event, data in pairs(autocmds) do
     augroups[group] = augroup
   end
 
-  vim.api.nvim_create_autocmd(event, { desc = desc, group = augroup, callback = callback })
+  vim.api.nvim_create_autocmd(event, { desc = desc, group = augroup, callback = callback, pattern = pattern })
 end

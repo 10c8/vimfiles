@@ -2,6 +2,20 @@
 -- Syntax highlighting and text objects.
 -- ]]
 
+local ensure_installed = {
+  'bash',
+  'c',
+  'html',
+  'javascript',
+  'lua',
+  'markdown',
+  'regex',
+  'rust',
+  'toml',
+  'typescript',
+  'vimdoc',
+}
+
 return {
   'nvim-treesitter/nvim-treesitter',
   lazy = true,
@@ -34,19 +48,7 @@ return {
 
     ---@diagnostic disable-next-line: missing-fields
     require('nvim-treesitter.configs').setup {
-      ensure_installed = {
-        'bash',
-        'c',
-        'html',
-        'javascript',
-        'lua',
-        'markdown',
-        'regex',
-        'rust',
-        'toml',
-        'typescript',
-        'vimdoc',
-      },
+      ensure_installed = ensure_installed,
       auto_install = true,
       highlight = {
         enable = true,
