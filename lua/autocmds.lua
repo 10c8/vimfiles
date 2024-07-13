@@ -4,7 +4,9 @@ local autocmds = {
   ['Set indentation to 2 spaces'] = {
     'Filetype',
     'indent-set',
-    'setlocal shiftwidth=2, tabstop=2',
+    function()
+      vim.cmd 'setlocal shiftwidth=2 tabstop=2 expandtab'
+    end,
     { 'html', 'css', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'lua' },
   },
 }

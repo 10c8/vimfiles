@@ -34,6 +34,8 @@ return {
 
     require('mini.trailspace').setup {}
 
+    require('mini.splitjoin').setup {}
+
     local files = require 'mini.files'
     files.setup {
       content = {

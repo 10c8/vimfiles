@@ -9,23 +9,116 @@ return {
   config = function()
     local wk = require 'which-key'
 
-    wk.setup {}
+    wk.setup {
+      preset = 'helix',
+    }
 
-    wk.register {
-      ['<leader>c'] = { name = '[c]ode', _ = 'which_key_ignore' },
-      ['<leader>d'] = { name = '[d]ocument', _ = 'which_key_ignore' },
-      ['<leader>D'] = { name = '[D]ebugger', _ = 'which_key_ignore' },
-      ['<leader>p'] = { name = '[p]roject', _ = 'which_key_ignore' },
-      ['<leader>r'] = { name = 'Search and [r]eplace', _ = 'which_key_ignore' },
-      ['<leader>rb'] = { name = 'Search and [r]eplace (multi-[b]uffer)', _ = 'which_key_ignore' },
-      ['<leader>s'] = { name = '[s]earch', _ = 'which_key_ignore' },
-      ['<leader>t'] = { name = '[t]erminal', _ = 'which_key_ignore' },
-      ['<leader>T'] = { name = '[T]ODOs / Tailwind', _ = 'which_key_ignore' },
-      ['<leader>x'] = { name = 'Trouble', _ = 'which_key_ignore' },
-      ['<leader>v'] = { name = 'Split', _ = 'which_key_ignore' },
-      ['<leader>w'] = { name = '[w]orkspace', _ = 'which_key_ignore' },
+    wk.add {
+      {
+        '<leader>c',
+        desc = '[c]ode',
+        icon = {
+          icon = '',
+          color = 'blue',
+        },
+      },
+      {
+        '<leader>d',
+        desc = '[d]ocument',
+        icon = {
+          icon = '',
+          color = 'yellow',
+        },
+      },
+      {
+        '<leader>D',
+        desc = '[D]ebugger',
+        icon = {
+          icon = '',
+          color = 'red',
+        },
+      },
+      {
+        '<leader>p',
+        desc = '[p]roject',
+        icon = {
+          icon = '',
+          color = 'green',
+        },
+      },
+      {
+        '<leader>r',
+        desc = 'Search and [r]eplace',
+        icon = {
+          icon = '',
+          color = 'purple',
+        },
+      },
+      {
+        '<leader>rb',
+        desc = 'Search and [r]eplace (multi-[b]uffer)',
+        icon = {
+          icon = '',
+          color = 'purple',
+        },
+      },
+      {
+        '<leader>s',
+        desc = '[s]earch',
+        icon = {
+          icon = '',
+          color = 'green',
+        },
+      },
+      {
+        '<leader>t',
+        desc = '[t]erminal',
+        icon = {
+          icon = '',
+          color = 'red',
+        },
+      },
+      {
+        '<leader>T',
+        desc = '[T]ODOs / Tailwind',
+        icon = {
+          icon = '',
+          color = 'blue',
+        },
+      },
+      {
+        '<leader>x',
+        desc = 'Trouble',
+        icon = {
+          icon = '',
+          color = 'red',
+        },
+      },
+      {
+        '<leader>v',
+        desc = 'Split',
+        icon = {
+          icon = '',
+          color = 'blue',
+        },
+      },
+      {
+        '<leader>w',
+        desc = '[w]orkspace',
+        icon = {
+          icon = '',
+          color = 'green',
+        },
+      },
 
-      ['g'] = { name = '[g]oto', _ = 'which_key_ignore' },
+      {
+        'g',
+        desc = '[g]oto',
+        icon = {
+          icon = '󱞫',
+          color = 'orange',
+        },
+      },
     }
   end,
 }
