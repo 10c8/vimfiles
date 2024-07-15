@@ -16,8 +16,25 @@ local must_install = {
   'wgsl_analyzer',
 }
 
+local ft = {
+  'css',  -- cssls
+  'html', -- emmet_language_server
+  'javascriptreact',
+  'typescriptreact',
+  'vue',
+  'lua',        -- lua_ls
+  'markdown',   -- marksman
+  'toml',       -- taplo
+  'javascript', -- tsserver
+  'typescript',
+  'vue',        -- volar
+  'wgsl',       -- wgsl_analyzer
+}
+
 return {
   'neovim/nvim-lspconfig',
+  lazy = true,
+  ft = ft,
   dependencies = {
     {
       'williamboman/mason.nvim',
@@ -131,7 +148,8 @@ return {
           -- TypeScript
           if server_name == 'tsserver' then
             local mason_registry = require 'mason-registry'
-            local vls_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
+            local vls_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
+                '/node_modules/@vue/language-server'
 
             server.init_options = {
               plugins = {

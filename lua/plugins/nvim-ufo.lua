@@ -5,10 +5,8 @@
 return {
   'kevinhwang91/nvim-ufo',
   lazy = true,
-  event = 'VeryLazy',
-  dependencies = {
-    'kevinhwang91/promise-async',
-  },
+  event = 'BufReadPre',
+  dependencies = { 'kevinhwang91/promise-async' },
   config = function()
     local handler = function(virtText, lnum, endLnum, width, truncate)
       local newVirtText = {}

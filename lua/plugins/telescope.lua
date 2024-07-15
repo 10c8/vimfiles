@@ -34,9 +34,6 @@ return {
     -- }
 
     telescope.setup {
-      defaults = {
-        layout_config = { prompt_position = 'bottom' },
-      },
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
@@ -83,7 +80,6 @@ return {
     -- see `:help telescope.builtin`
     vim.keymap.set('n', '<leader><leader>', ts_builtin.buffers, { desc = 'Find existing buffers' })
     -- vim.keymap.set('n', '<leader>s.', ts_builtin.oldfiles, { desc = '[s]earch recent files' })
-    -- vim.keymap.set('n', '<leader>sc', '<CMD>Telescope neoclip<CR>', { desc = '[s]earch [c]lipboard' })
     vim.keymap.set('n', '<leader>sd', ts_builtin.diagnostics, { desc = '[s]earch [d]iagnostics' })
     vim.keymap.set('n', '<leader>se', ts_builtin.resume, { desc = '[s]earch r[e]sume' })
     vim.keymap.set('n', '<leader>sg', ts_builtin.live_grep, { desc = '[s]earch by [g]rep' })
@@ -105,10 +101,9 @@ return {
     end, { desc = '[s]earch co[n]fig files' })
 
     vim.keymap.set('n', '<leader>/', function()
-      ts_builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-        winblend = 10,
-        previewer = false,
-      })
+      ts_builtin.current_buffer_fuzzy_find(
+        require('telescope.themes').get_dropdown { previewer = false }
+      )
     end, { desc = 'Fuzzy search in current buffer' })
 
     -- see `:help telescope.builtin.live_grep()`

@@ -5,7 +5,7 @@
 return {
   'folke/todo-comments.nvim',
   lazy = true,
-  event = 'VimEnter',
+  event = 'BufReadPre',
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
     require('todo-comments').setup {
