@@ -11,24 +11,24 @@ local must_install = {
   'marksman',
   'tailwindcss',
   'taplo',
-  'tsserver',
+  'ts_ls',
   'volar',
   'wgsl_analyzer',
 }
 
 local ft = {
-  'css',  -- cssls
+  'css', -- cssls
   'html', -- emmet_language_server
   'javascriptreact',
   'typescriptreact',
   'vue',
-  'lua',        -- lua_ls
-  'markdown',   -- marksman
-  'toml',       -- taplo
+  'lua', -- lua_ls
+  'markdown', -- marksman
+  'toml', -- taplo
   'javascript', -- tsserver
   'typescript',
-  'vue',        -- volar
-  'wgsl',       -- wgsl_analyzer
+  'vue', -- volar
+  'wgsl', -- wgsl_analyzer
 }
 
 return {
@@ -39,7 +39,9 @@ return {
     {
       'williamboman/mason.nvim',
       run = ':MasonUpdate',
-      opts = {},
+      opts = {
+        PATH = 'prepend',
+      },
     },
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
@@ -115,9 +117,10 @@ return {
         end
 
         -- Inlay hints
-        if client and client.server_capabilities.inlayHintProvider then
-          vim.lsp.inlay_hint.enable(true)
-        end
+        -- FIXME: This generates errors on Vue for some reason
+        -- if client and client.server_capabilities.inlayHintProvider then
+        --   vim.lsp.inlay_hint.enable(true)
+        -- end
       end,
     })
 
@@ -146,10 +149,9 @@ return {
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
 
           -- TypeScript
-          if server_name == 'tsserver' then
+          if server_name == 'ts_ls' then
             local mason_registry = require 'mason-registry'
-            local vls_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
-                '/node_modules/@vue/language-server'
+            local vls_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
 
             server.init_options = {
               plugins = {

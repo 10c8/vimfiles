@@ -30,8 +30,6 @@ return {
       vim.g.floaterm_wintype = 'split'
     end, { desc = 'Open the Lazy[g]it terminal' })
 
-    -- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal' })
-
     -- [[ Autocommands ]]
     local group = vim.api.nvim_create_augroup('Floaterm', { clear = true })
 
@@ -40,7 +38,8 @@ return {
       callback = function()
         vim.cmd 'setlocal listchars= nonumber norelativenumber nocursorline signcolumn=no'
 
-        vim.keymap.set('t', '<C-Space>', '<C-\\><C-n><CMD>FloatermToggle<CR>', { buffer = true, desc = '[t]oggle the terminal' })
+        vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { buffer = true, desc = 'Exit terminal' })
+        vim.keymap.set('t', '<C-Space>', '<C-\\><C-n><CMD>FloatermToggle<CR>', { buffer = true, desc = '[t]oggle terminal' })
       end,
     })
   end,
