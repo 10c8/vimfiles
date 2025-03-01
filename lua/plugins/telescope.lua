@@ -34,6 +34,13 @@ return {
     -- }
 
     telescope.setup {
+      defaults = {
+        file_ignore_patterns = {
+          '.git',
+          'node_modules',
+          'Packages', -- Roblox Wally
+        },
+      },
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
@@ -101,9 +108,7 @@ return {
     end, { desc = '[s]earch co[n]fig files' })
 
     vim.keymap.set('n', '<leader>/', function()
-      ts_builtin.current_buffer_fuzzy_find(
-        require('telescope.themes').get_dropdown { previewer = false }
-      )
+      ts_builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { previewer = false })
     end, { desc = 'Fuzzy search in current buffer' })
 
     -- see `:help telescope.builtin.live_grep()`

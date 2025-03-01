@@ -8,6 +8,10 @@ return {
   event = 'InsertEnter',
   cmd = 'Copilot',
   config = function()
+    if vim.g.vscode then
+      return
+    end
+
     require('copilot').setup {
       panel = { enabled = false },
       suggestion = {

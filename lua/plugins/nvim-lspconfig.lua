@@ -14,6 +14,7 @@ local must_install = {
   'ts_ls',
   'volar',
   'wgsl_analyzer',
+  -- 'xmlformatter',
 }
 
 local ft = {
@@ -24,11 +25,13 @@ local ft = {
   'vue',
   'lua', -- lua_ls
   'markdown', -- marksman
+  -- 'python',
   'toml', -- taplo
   'javascript', -- tsserver
   'typescript',
   'vue', -- volar
   'wgsl', -- wgsl_analyzer
+  'xml', -- xmlformatter
 }
 
 return {
@@ -136,15 +139,18 @@ return {
 
     -- LSP servers
     -- see `:help lspconfig-all`
-    local servers = {}
+    local servers = {
+      cssls = {
+        filetypes = { 'css' },
+      },
+    }
 
     -- see `:Mason`
     require('mason-lspconfig').setup {
+      automatic_installation = true,
       ensure_installed = opts.servers,
       handlers = {
         function(server_name)
-          -- local util = require 'lspconfig/util'
-
           local server = servers[server_name] or {}
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
 
@@ -169,20 +175,6 @@ return {
               'typescriptreact',
               'vue',
             }
-          end
-
-          -- Disable Volar's hybrid mode
-          -- if server_name == 'volar' then
-          --   server.init_options = {
-          --     vue = {
-          --       hybridMode = false,
-          --     },
-          --   }
-          -- end
-
-          -- CSS
-          if server_name == 'cssls' then
-            server.filetypes = { 'css' }
           end
 
           require('lspconfig')[server_name].setup(server)

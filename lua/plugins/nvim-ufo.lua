@@ -8,6 +8,10 @@ return {
   event = 'BufRead',
   dependencies = { 'kevinhwang91/promise-async' },
   config = function()
+    if vim.g.vscode then
+      return
+    end
+
     local handler = function(virtText, lnum, endLnum, width, truncate)
       local newVirtText = {}
       local totalLines = vim.api.nvim_buf_line_count(0)
@@ -54,7 +58,8 @@ return {
     ufo.setup {
       open_fold_hl_timeout = 400,
       close_fold_kinds_for_ft = {
-        default = { 'imports', 'comment' },
+        -- default = { 'imports', 'comment' },
+        default = {},
       },
       preview = {
         win_config = {
@@ -75,6 +80,7 @@ return {
           return { 'indent' }
         end
       end,
+      enable_get_fold_virt_text = true,
     }
 
     vim.o.foldcolumn = '0'

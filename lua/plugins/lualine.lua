@@ -9,6 +9,10 @@ return {
     'AndreM222/copilot-lualine',
   },
   config = function()
+    if vim.g.vscode then
+      return
+    end
+
     local function trunc(tw, tl, hw, no_ellipsis)
       return function(str)
         local ww = vim.fn.winwidth(0)

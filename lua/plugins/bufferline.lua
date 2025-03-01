@@ -8,13 +8,17 @@ return {
   event = 'VimEnter',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
+    if vim.g.vscode then
+      return
+    end
+
     local bufferline = require 'bufferline'
 
     bufferline.setup {
       options = {
         style_preset = bufferline.style_preset.no_italic,
         indicator = {
-          style = 'none',
+          style = 'icon',
         },
         diagnostics = 'nvim_lsp',
         diagnostics_indicator = function(_, _, diagnostics_dict, context)
@@ -29,10 +33,10 @@ return {
           end
           return s
         end,
-        custom_filter = function(_buf_number, _)
-          -- Hide the `mini.files` buffer
-          return true -- TODO
-        end,
+        -- custom_filter = function(_buf_number, _)
+        --   -- Hide the `mini.files` buffer
+        --   return true -- TODO
+        -- end,
         show_buffer_close_icons = false,
         show_close_icon = false,
         sort_by = 'insert_at_end',

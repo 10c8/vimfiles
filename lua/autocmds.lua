@@ -9,6 +9,17 @@ local autocmds = {
     end,
     { 'html', 'css', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'lua' },
   },
+  ['Change dir to home conditionally'] = {
+    'BufWinEnter',
+    'chdir-auto',
+    function()
+      local neovide_path = vim.fn.expand 'C:\\Program Files\\Neovide'
+
+      if vim.fn.getcwd() == neovide_path then
+        vim.cmd 'cd ~'
+      end
+    end,
+  },
 }
 
 -- Create autocommands

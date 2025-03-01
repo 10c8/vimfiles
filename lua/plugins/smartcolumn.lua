@@ -10,6 +10,7 @@ return {
     scope = 'window',
     custom_colorcolumn = {
       lua = '160',
+      luau = '120',
       go = '120',
       markdown = '80',
       rust = '100',
