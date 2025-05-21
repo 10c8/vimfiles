@@ -9,9 +9,11 @@ local ensure_installed = {
   'javascript',
   'lua',
   'markdown',
+  "nim",
   'regex',
   'rust',
   'toml',
+  'svelte',
   'typescript',
   'vimdoc',
 }

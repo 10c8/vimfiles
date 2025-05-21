@@ -9,6 +9,8 @@ local must_install = {
   'html',
   'lua_ls',
   'marksman',
+  -- 'nim_langserver',
+  'svelte',
   'tailwindcss',
   'taplo',
   'ts_ls',
@@ -20,14 +22,17 @@ local must_install = {
 local ft = {
   'css', -- cssls
   'html', -- emmet_language_server
+  'handlebars',
   'javascriptreact',
   'typescriptreact',
   'vue',
   'lua', -- lua_ls
   'markdown', -- marksman
+  -- 'nim', -- nim_langserver
   -- 'python',
   'toml', -- taplo
   'javascript', -- tsserver
+  'svelte',
   'typescript',
   'vue', -- volar
   'wgsl', -- wgsl_analyzer
@@ -142,6 +147,40 @@ return {
     local servers = {
       cssls = {
         filetypes = { 'css' },
+        settings = {
+          css = {
+            validate = true,
+            lint = {
+              unknownAtRules = 'ignore',
+            },
+          },
+          scss = {
+            validate = true,
+            lint = {
+              unknownAtRules = 'ignore',
+            },
+          },
+          less = {
+            validate = true,
+            lint = {
+              unknownAtRules = 'ignore',
+            },
+          },
+        },
+      },
+      tailwindcss = {
+        settings = {
+          tailwindCSS = {
+            experimental = {
+              classRegex = {
+                { "([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]" }
+              },
+            },
+          },
+        },
+      },
+      nim_langserver = {
+        nimsuggestPath = vim.fn.exepath 'nimsuggest',
       },
     }
 
@@ -159,15 +198,19 @@ return {
             local mason_registry = require 'mason-registry'
             local vls_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
 
+            -- Enable Volar if we're opening a Vue file
+            -- if vim.bo.filetype == 'vue' then
             server.init_options = {
               plugins = {
-                { -- Enable Volar
+                {
                   name = '@vue/typescript-plugin',
                   location = vls_path,
                   languages = { 'vue' },
                 },
               },
             }
+            -- end
+
             server.filetypes = {
               'javascript',
               'javascriptreact',

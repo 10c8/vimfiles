@@ -5,6 +5,10 @@ vim.cmd 'language en_US.UTF-8'
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.lsp.set_log_level 'off'
+
+vim.opt.laststatus = 3 -- views can only be collapsed with the global statusline
+
 require 'options'
 
 if vim.g.neovide then

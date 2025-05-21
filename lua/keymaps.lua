@@ -15,7 +15,7 @@ end
 
 -- [[ Keymaps ]]
 local keymaps = {
-  -- Neovim
+  -- [[ NORMAL ]]
   ['<C-u>'] = { 'Scroll half page [u]p', 'n', '<C-u>zz' },
   ['<C-d>'] = { 'Scroll half page [d]own', 'n', '<C-d>zz' },
   ['[d'] = { 'Go to previous [d]iagnostic message', 'n', prev_diag_msg },
@@ -28,11 +28,17 @@ local keymaps = {
   ['<C-j>'] = { 'Move focus to the lower window', 'n', '<C-w><C-j>' },
   ['<C-k>'] = { 'Move focus to the upper window', 'n', '<C-w><C-k>' },
   ['<C-n>'] = { 'New empty buffer', 'n', '<CMD>enew<CR>' },
-  ['<C-w>'] = { 'Close the current buffer', 'n', '<CMD>bp<CR><CMD>bd #<CR>' },
-  ['<C-S-w>'] = { 'Close the current buffer (force)', 'n', '<CMD>bp<CR><CMD>bd! #<CR>' },
+  ['<C-w>'] = { 'Close the current buffer', 'n', '<CMD>bd<CR>' },
+  ['<C-S-w>'] = { 'Close the current buffer (force)', 'n', '<CMD>bd!<CR>' },
   ['<leader>vh'] = { 'Split the window [h]orizontally', 'n', '<CMD>split<CR>' },
   ['<leader>vv'] = { 'Split the window [v]ertically', 'n', '<CMD>vsplit<CR>' },
   ['zz'] = { 'Update the current file', 'n', '<CMD>update<CR>' },
+
+  -- [[ INSERT ]]
+  ['kj'] = { 'Esc', 'i', '<ESC>' },
+  ['jk'] = { 'Esc', 'i', '<ESC>' },
+
+  -- [[ VISUAL ]]
 }
 
 -- Clear search highlights on `Esc`
