@@ -3,65 +3,37 @@
 -- ]]
 
 local must_install = {
+  'biome',
+  'clangd',
   'cssls',
   'emmet_language_server',
   'gopls',
   'html',
   'lua_ls',
   'marksman',
-  -- 'nim_langserver',
+  'stylua',
   'svelte',
   'tailwindcss',
   'taplo',
   'ts_ls',
-  'volar',
+  'vue_ls',
+  'vtsls',
   'wgsl_analyzer',
   -- 'xmlformatter',
 }
 
-local ft = {
-  'css', -- cssls
-  'html', -- emmet_language_server
-  'handlebars',
-  'javascriptreact',
-  'typescriptreact',
-  'vue',
-  'lua', -- lua_ls
-  'markdown', -- marksman
-  -- 'nim', -- nim_langserver
-  -- 'python',
-  'toml', -- taplo
-  'javascript', -- tsserver
-  'svelte',
-  'typescript',
-  'vue', -- volar
-  'wgsl', -- wgsl_analyzer
-  'xml', -- xmlformatter
-}
-
 return {
   'neovim/nvim-lspconfig',
-  lazy = true,
-  ft = ft,
   dependencies = {
-    {
-      'williamboman/mason.nvim',
-      run = ':MasonUpdate',
-      opts = {
-        PATH = 'prepend',
-      },
-    },
-    'williamboman/mason-lspconfig.nvim',
+    { 'mason-org/mason.nvim', opts = {} },
+    { 'mason-org/mason-lspconfig.nvim', opts = {} },
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-    {
-      'j-hui/fidget.nvim',
-      opts = {},
-    },
+
+    -- Status updates
+    { 'j-hui/fidget.nvim', opts = {} },
+
+    -- Completion
     'hrsh7th/nvim-cmp',
-  },
-  opts = {
-    inlay_hints = { enabled = true },
-    servers = must_install,
   },
   config = function(_, opts)
     vim.api.nvim_create_autocmd('LspAttach', {
@@ -112,7 +84,7 @@ return {
         -- [[ Autocommands ]]
         -- Highlight the word under your cursor
         -- see `:help CursorHold`
-        if client and client.server_capabilities.documentHighlightProvider then
+        if client and client:supports_method('textDocument/documentHighlight', event.buf) then
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
             buffer = event.buf,
             callback = vim.lsp.buf.document_highlight,
@@ -125,18 +97,16 @@ return {
         end
 
         -- Inlay hints
-        -- FIXME: This generates errors on Vue for some reason
-        -- if client and client.server_capabilities.inlayHintProvider then
-        --   vim.lsp.inlay_hint.enable(true)
-        -- end
+        if client and client:supports_method('textDocument/inlayHint', event.buf) then
+          vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+        end
       end,
     })
 
-    -- see `:help lsp.protocol.make_client_capabilities`
+    -- Enable folding with `kevinhwang91/nvim-ufo`
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
-    -- Enable folding with `kevinhwang91/nvim-ufo`
     capabilities.textDocument.foldingRange = {
       dynamicRegistration = false,
       lineFoldingOnly = true,
@@ -144,7 +114,19 @@ return {
 
     -- LSP servers
     -- see `:help lspconfig-all`
+    local vue_plugin = {
+      name = '@vue/typescript-plugin',
+      location = vim.fn.stdpath 'data' .. '\\mason\\packages\\vue-language-server\\node_modules\\@vue\\language-server',
+      languages = { 'vue' },
+      configNamespace = 'typescript',
+    }
+
     local servers = {
+      Lua = {
+        completion = {
+          callSnippet = 'Replace',
+        },
+      },
       cssls = {
         filetypes = { 'css' },
         settings = {
@@ -173,56 +155,69 @@ return {
           tailwindCSS = {
             experimental = {
               classRegex = {
-                { "([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]" }
+                { '(["\'`][^"\'`]*.*?["\'`])', '["\'`]([^"\'`]*).*?["\'`]' },
               },
             },
           },
         },
       },
-      nim_langserver = {
-        nimsuggestPath = vim.fn.exepath 'nimsuggest',
-      },
-    }
-
-    -- see `:Mason`
-    require('mason-lspconfig').setup {
-      automatic_installation = true,
-      ensure_installed = opts.servers,
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-
-          -- TypeScript
-          if server_name == 'ts_ls' then
-            local mason_registry = require 'mason-registry'
-            local vls_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
-
-            -- Enable Volar if we're opening a Vue file
-            -- if vim.bo.filetype == 'vue' then
-            server.init_options = {
-              plugins = {
-                {
-                  name = '@vue/typescript-plugin',
-                  location = vls_path,
-                  languages = { 'vue' },
-                },
+      -- nim_langserver = {
+      --   nimsuggestPath = vim.fn.exepath 'nimsuggest',
+      -- },
+      vtsls = {
+        settings = {
+          vtsls = {
+            tsserver = {
+              globalPlugins = {
+                vue_plugin,
               },
-            }
-            -- end
-
-            server.filetypes = {
-              'javascript',
-              'javascriptreact',
-              'typescript',
-              'typescriptreact',
-              'vue',
-            }
-          end
-
-          require('lspconfig')[server_name].setup(server)
-        end,
+            },
+          },
+        },
+        filetypes = {
+          -- 'javascript',
+          -- 'javascriptreact',
+          -- 'typescript',
+          -- 'typescriptreact',
+          'vue',
+        },
+      },
+      ts_ls = {
+        filetypes = {
+          'javascript',
+          'javascriptreact',
+          'typescript',
+          'typescriptreact',
+        },
+      },
+      svelte = {
+        plugin = {
+          typescript = {
+            inlayHints = {
+              parameterNames = { enabled = 'all' }, -- "none" | "literals" | "all"
+              parameterTypes = { enabled = true },
+              variableTypes = { enabled = true },
+              propertyDeclarationTypes = { enabled = true },
+              functionLikeReturnTypes = { enabled = true },
+              enumMemberValues = { enabled = true },
+            },
+          },
+        },
       },
     }
+
+    -- Install servers
+    require('mason-tool-installer').setup {
+      ensure_installed = must_install,
+      auto_update = true,
+    }
+
+    -- Configure and enable each server
+    for server, config in pairs(servers) do
+      config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, config.capabilities or {})
+
+      vim.lsp.config(server, config)
+      vim.lsp.enable(server)
+    end
   end,
 }

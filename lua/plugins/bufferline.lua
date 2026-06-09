@@ -8,10 +8,6 @@ return {
   event = 'VimEnter',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
-    if vim.g.vscode then
-      return
-    end
-
     local bufferline = require 'bufferline'
 
     bufferline.setup {
@@ -44,10 +40,10 @@ return {
     }
 
     -- [[ Keymaps ]]
-    vim.keymap.set('n', '<TAB>', '<CMD>BufferLineCycleNext<CR>', { noremap = true, silent = true, desc = 'Switch to the next buffer' })
-    vim.keymap.set('n', '<S-TAB>', '<CMD>BufferLineCyclePrev<CR>', { noremap = true, silent = true, desc = 'Switch to the previous buffer' })
-    vim.keymap.set('n', '<Leader><TAB>', '<CMD>BufferLineMoveNext<CR>', { noremap = true, silent = true, desc = 'Move buffer to the right' })
-    vim.keymap.set('n', '<Leader><S-TAB>', '<CMD>BufferLineMovePrev<CR>', { noremap = true, silent = true, desc = 'Move buffer to the left' })
+    vim.keymap.set('n', '<S-L>', '<CMD>BufferLineCycleNext<CR>', { noremap = true, silent = true, desc = 'Switch to the next buffer' })
+    vim.keymap.set('n', '<S-H>', '<CMD>BufferLineCyclePrev<CR>', { noremap = true, silent = true, desc = 'Switch to the previous buffer' })
+    vim.keymap.set('n', '<Leader><S-L>', '<CMD>BufferLineMoveNext<CR>', { noremap = true, silent = true, desc = 'Move buffer to the right' })
+    vim.keymap.set('n', '<Leader><S-H>', '<CMD>BufferLineMovePrev<CR>', { noremap = true, silent = true, desc = 'Move buffer to the left' })
     vim.keymap.set('n', 'gB', '<CMD>BufferLinePick<CR>', { noremap = true, silent = true, desc = 'Pick a [B]uffer' })
   end,
 }

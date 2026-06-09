@@ -3,7 +3,7 @@
 -- ]]
 
 return {
-  'ggandor/leap.nvim',
+  url = 'https://codeberg.org/andyg/leap.nvim',
   lazy = true,
   event = 'VimEnter',
   dependencies = { 'tpope/vim-repeat' },

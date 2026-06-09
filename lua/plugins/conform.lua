@@ -5,7 +5,8 @@
 return {
   'stevearc/conform.nvim',
   lazy = true,
-  event = 'BufReadPre',
+  event = { 'BufWritePre' },
+  cmd = { 'ConformInfo' },
   ft = {
     'lua',
     'luau',
@@ -14,6 +15,7 @@ return {
     'javascriptreact',
     'typescript',
     'typescriptreact',
+    'svelte',
     'vue',
     'xml',
   },
@@ -22,8 +24,9 @@ return {
       '<leader>lf',
       function()
         require('conform').format {
-          timeout_ms = 500,
-          lsp_fallback = true,
+          -- timeout_ms = 500,
+          -- lsp_fallback = true,
+          lsp_format = 'never',
           async = true,
           quiet = true,
         }
@@ -37,11 +40,12 @@ return {
       lua = { 'stylua' },
       luau = { 'stylua' },
       python = { 'black' },
-      javascript = { 'prettierd', 'prettier' },
-      javascriptreact = { 'prettierd', 'prettier' },
-      typescript = { 'prettierd', 'prettier' },
-      typescriptreact = { 'prettierd', 'prettier' },
-      vue = { 'prettierd', 'prettier' },
+      javascript = { 'biome', 'biome-organize-imports' },
+      javascriptreact = { 'biome', 'biome-organize-imports' },
+      typescript = { 'biome', 'biome-organize-imports' },
+      typescriptreact = { 'biome', 'biome-organize-imports' },
+      svelte = { 'biome', 'biome-organize-imports' },
+      vue = { 'biome', 'biome-organize-imports' },
       -- xml = {
       --   {
       --     command = 'xmlformat',
@@ -58,7 +62,8 @@ return {
     notify_on_error = false,
     format_after_save = {
       timeout_ms = 500,
-      lsp_fallback = true,
+      -- lsp_fallback = true,
+      lsp_format_opt = "never",
       async = true,
       quiet = true,
     },

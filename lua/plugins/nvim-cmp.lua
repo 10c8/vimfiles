@@ -6,52 +6,52 @@ return {
   'hrsh7th/nvim-cmp',
   event = 'InsertEnter',
   dependencies = {
-    {
-      'L3MON4D3/LuaSnip',
-      build = (function()
-        if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-          return
-        end
-        return 'make install_jsregexp'
-      end)(),
-    },
-    'saadparwaiz1/cmp_luasnip',
+    -- {
+    --   'L3MON4D3/LuaSnip',
+    --   build = (function()
+    --     if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+    --       return
+    --     end
+    --     return 'make install_jsregexp'
+    --   end)(),
+    -- },
+    -- 'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'onsails/lspkind-nvim',
-    {
-      'luckasRanarison/tailwind-tools.nvim',
-      lazy = true,
-      ft = {
-        'html',
-        'css',
-        'scss',
-        'javascriptreact',
-        'typescriptreact',
-        'vue',
-      },
-      dependencies = {
-        'nvim-treesitter/nvim-treesitter',
-      },
-      config = function()
-        local tt = require 'tailwind-tools'
-
-        tt.setup {
-          document_color = {
-            enabled = true,
-            kind = 'inline',
-            inline_symbol = '󰝤 ',
-            debounce = 200,
-          },
-          conceal = {
-            enabled = false,
-          },
-        }
-
-        -- Keymaps
-        vim.keymap.set('n', '<leader>TS', '<cmd>:TailwindSort<cr>', { noremap = true, silent = true })
-      end,
-    },
+    -- {
+    --   'luckasRanarison/tailwind-tools.nvim',
+    --   lazy = true,
+    --   ft = {
+    --     'html',
+    --     'css',
+    --     'scss',
+    --     'javascriptreact',
+    --     'typescriptreact',
+    --     'vue',
+    --   },
+    --   dependencies = {
+    --     'nvim-treesitter/nvim-treesitter',
+    --   },
+    --   config = function()
+    --     local tt = require 'tailwind-tools'
+    --
+    --     tt.setup {
+    --       document_color = {
+    --         enabled = true,
+    --         kind = 'inline',
+    --         inline_symbol = '󰝤 ',
+    --         debounce = 200,
+    --       },
+    --       conceal = {
+    --         enabled = false,
+    --       },
+    --     }
+    --
+    --     -- Keymaps
+    --     vim.keymap.set('n', '<leader>TS', '<cmd>:TailwindSort<cr>', { noremap = true, silent = true })
+    --   end,
+    -- },
     -- { 'zbirenbaum/copilot-cmp', opts = {} },
     -- 'rafamadriz/friendly-snippets',
   },
@@ -59,15 +59,15 @@ return {
     -- see `:help cmp`
     local cmp = require 'cmp'
 
-    local luasnip = require 'luasnip'
-    luasnip.config.setup {}
+    -- local luasnip = require 'luasnip'
+    -- luasnip.config.setup {}
 
     cmp.setup {
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
+      -- snippet = {
+      --   expand = function(args)
+      --     luasnip.lsp_expand(args.body)
+      --   end,
+      -- },
 
       completion = { completeopt = 'menu,menuone,noinsert' },
 
@@ -99,22 +99,22 @@ return {
         ['<C-n>'] = cmp.mapping.scroll_docs(4),
 
         -- Snippet navigation
-        ['<C-l>'] = cmp.mapping(function()
-          if luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          end
-        end, { 'i', 's' }),
-        ['<C-h>'] = cmp.mapping(function()
-          if luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          end
-        end, { 'i', 's' }),
+        -- ['<C-l>'] = cmp.mapping(function()
+        --   if luasnip.expand_or_locally_jumpable() then
+        --     luasnip.expand_or_jump()
+        --   end
+        -- end, { 'i', 's' }),
+        -- ['<C-h>'] = cmp.mapping(function()
+        --   if luasnip.locally_jumpable(-1) then
+        --     luasnip.jump(-1)
+        --   end
+        -- end, { 'i', 's' }),
       },
 
       sources = {
         -- { name = 'copilot' },
         { name = 'nvim_lsp' },
-        { name = 'luasnip' },
+        -- { name = 'luasnip' },
         { name = 'path' },
       },
     }

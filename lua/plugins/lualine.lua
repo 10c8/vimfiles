@@ -6,13 +6,9 @@ return {
   'nvim-lualine/lualine.nvim',
   dependencies = {
     'nvim-tree/nvim-web-devicons',
-    'AndreM222/copilot-lualine',
+    -- 'AndreM222/copilot-lualine',
   },
   config = function()
-    if vim.g.vscode then
-      return
-    end
-
     local function trunc(tw, tl, hw, no_ellipsis)
       return function(str)
         local ww = vim.fn.winwidth(0)
@@ -99,7 +95,7 @@ return {
             fmt = trunc(nil, nil, 81, true),
           },
           'filetype',
-          'copilot', -- Copilot status
+          -- 'copilot', -- Copilot status
         },
         lualine_y = { 'progress' },
         lualine_z = { 'location' },

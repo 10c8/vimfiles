@@ -4,8 +4,6 @@
 
 return {
   'folke/todo-comments.nvim',
-  lazy = true,
-  event = 'BufReadPre',
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
     require('todo-comments').setup {
@@ -17,10 +15,21 @@ return {
         },
         TODO = { icon = ' ', color = 'info' },
         HACK = { icon = '󰈸 ', color = 'warning' },
-        WARN = { icon = ' ', color = 'warning', alt = { 'WARNING', 'XXX' } },
-        PERF = { icon = ' ', alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' } },
+        WARN = {
+          icon = ' ',
+          color = 'warning',
+          alt = { 'WARNING', 'XXX' },
+        },
+        PERF = {
+          icon = ' ',
+          alt = { 'OPTIM', 'PERFORMANCE', 'OPTIMIZE' },
+        },
         NOTE = { icon = ' ', color = 'hint', alt = { 'INFO' } },
-        TEST = { icon = '󰙨 ', color = 'test', alt = { 'TESTING', 'PASSED', 'FAILED' } },
+        TEST = {
+          icon = '󰙨 ',
+          color = 'test',
+          alt = { 'TESTING', 'PASSED', 'FAILED' },
+        },
         SAFETY = { icon = ' ', color = 'hint' },
       },
       highlight = {

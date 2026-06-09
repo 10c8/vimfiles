@@ -19,10 +19,6 @@ return {
   event = 'BufReadPre',
   main = 'ibl',
   config = function()
-    if vim.g.vscode then
-      return
-    end
-
     local hooks = require 'ibl.hooks'
 
     hooks.register(hooks.type.HIGHLIGHT_SETUP, function()

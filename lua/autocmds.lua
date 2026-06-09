@@ -20,6 +20,15 @@ local autocmds = {
       end
     end,
   },
+  -- ['Create new change after X seconds'] = {
+  --   'CursorHoldI',
+  --   'change-new',
+  --   function()
+  --     -- This makes it so that vim's undo doesn't just get rid of the entirety of what was
+  --     -- typed in insert mode, but rather creates a new change every few seconds
+  --     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-g>u', true, false, true), 'n', false)
+  --   end,
+  -- }
 }
 
 -- Create autocommands
