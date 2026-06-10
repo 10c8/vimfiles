@@ -1,7 +1,7 @@
 return {
   'ray-d-song/inlay-hint-trim.nvim',
   opts = {
-    max_length = 20,
+    max_length = 16,
     ellipsis = '…',
     clients = {
       ['gopls'] = true,

@@ -3,7 +3,8 @@
 -- ]]
 
 return {
-  'folke/todo-comments.nvim',
+  -- 'folke/todo-comments.nvim',
+  '10c8/todo-comments.nvim', -- Until they merge #399
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
     require('todo-comments').setup {
@@ -33,7 +34,7 @@ return {
         SAFETY = { icon = ' ', color = 'hint' },
       },
       highlight = {
-        pattern = [[.*<(KEYWORDS)\s*:*]],
+        pattern = [[.*<(KEYWORDS)\s*:?]],
       },
       colors = {
         error = { '#fb4934' },

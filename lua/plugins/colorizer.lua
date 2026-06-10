@@ -3,12 +3,14 @@
 -- ]]
 
 local ft = {
-  'html',
   'css',
+  'html',
   'javascript',
   'javascriptreact',
+  'svelte',
   'typescript',
   'typescriptreact',
+  'vue',
 }
 
 return {

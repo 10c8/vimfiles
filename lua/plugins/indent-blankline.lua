@@ -14,7 +14,7 @@ local highlight = {
 
 return {
   'lukas-reineke/indent-blankline.nvim',
-  tag = 'v3.8.2',
+  -- tag = 'v3.8.2',
   lazy = true,
   event = 'BufReadPre',
   main = 'ibl',

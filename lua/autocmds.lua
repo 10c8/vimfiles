@@ -20,6 +20,31 @@ local autocmds = {
       end
     end,
   },
+  ['Automatically show LSP diagnostics on hover'] = {
+    'CursorHold',
+    'lsp-diag-hover',
+    function()
+      if #vim.diagnostic.get(0) == 0 then
+        return
+      end
+
+      local opts = {
+        focusable = false,
+        close_events = {
+          'CursorMoved',
+          'CursorMovedI',
+          'BufHidden',
+          'InsertCharPre',
+          'WinLeave',
+        },
+        source = 'always',
+        prefix = ' ',
+        scope = 'cursor',
+      }
+
+      pcall(vim.diagnostic.open_float, nil, opts)
+    end,
+  },
   -- ['Create new change after X seconds'] = {
   --   'CursorHoldI',
   --   'change-new',

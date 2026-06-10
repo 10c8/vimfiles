@@ -8,6 +8,7 @@ return {
     'html',
     'javascript',
     'javascriptreact',
+    'svelte',
     'typescript',
     'typescriptreact',
     'vue',

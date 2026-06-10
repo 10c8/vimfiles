@@ -10,22 +10,19 @@ return {
   ft = {
     'lua',
     'luau',
-    'python',
     'javascript',
     'javascriptreact',
+    'python',
+    'svelte',
     'typescript',
     'typescriptreact',
-    'svelte',
     'vue',
-    'xml',
   },
   keys = {
     {
       '<leader>lf',
       function()
         require('conform').format {
-          -- timeout_ms = 500,
-          -- lsp_fallback = true,
           lsp_format = 'never',
           async = true,
           quiet = true,
@@ -35,7 +32,6 @@ return {
     },
   },
   opts = {
-    -- log_level = vim.log.levels.DEBUG,
     formatters_by_ft = {
       lua = { 'stylua' },
       luau = { 'stylua' },
@@ -46,24 +42,11 @@ return {
       typescriptreact = { 'biome', 'biome-organize-imports' },
       svelte = { 'biome', 'biome-organize-imports' },
       vue = { 'biome', 'biome-organize-imports' },
-      -- xml = {
-      --   {
-      --     command = 'xmlformat',
-      --     args = {
-      --       '$FILENAME',
-      --       '--indent 2',
-      --       '--preserve "pre,literal"',
-      --       '--blanks',
-      --       '-outencoding "utf-8"',
-      --     },
-      --   },
-      -- },
     },
     notify_on_error = false,
     format_after_save = {
       timeout_ms = 500,
-      -- lsp_fallback = true,
-      lsp_format_opt = "never",
+      lsp_format_opt = 'never',
       async = true,
       quiet = true,
     },

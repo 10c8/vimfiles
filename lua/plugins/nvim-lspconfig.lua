@@ -19,7 +19,6 @@ local must_install = {
   'vue_ls',
   'vtsls',
   'wgsl_analyzer',
-  -- 'xmlformatter',
 }
 
 return {
@@ -189,15 +188,29 @@ return {
           'typescript',
           'typescriptreact',
         },
+        settings = {
+          typescript = {
+            inlayHints = {
+              includeInlayParameterNameHints = 'none',
+              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+              includeInlayFunctionParameterTypeHints = false,
+              includeInlayVariableTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            },
+          },
+        },
       },
       svelte = {
         plugin = {
           typescript = {
             inlayHints = {
-              parameterNames = { enabled = 'all' }, -- "none" | "literals" | "all"
+              parameterNames = { enabled = 'none' }, -- "none" | "literals" | "all"
               parameterTypes = { enabled = true },
               variableTypes = { enabled = true },
               propertyDeclarationTypes = { enabled = true },
+              functionParameterTypes = { enabled = false },
               functionLikeReturnTypes = { enabled = true },
               enumMemberValues = { enabled = true },
             },

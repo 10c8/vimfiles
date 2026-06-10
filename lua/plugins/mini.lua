@@ -1,41 +1,43 @@
 -- [[
 -- Mini plugins.
---  - AI: Better [A]round/[I]nside textobjects.
---  - Surround: Add/delete/replace surroundings (brackets, quotes, etc.)
---  - Pairs: Automatically close pairs (brackets, quotes, etc.)
---  - Move: Move lines and blocks of text.
---  - Trailspace: Highlight trailing whitespaces.
---  - Files: Simple file explorer.
---  - Sessions: Save and restore sessions.
 -- ]]
 
 return {
   'echasnovski/mini.nvim',
-  version = false,
+  version = '*',
   lazy = true,
   event = 'VimEnter',
   specs = {
     { 'nvim-tree/nvim-web-devicons', enabled = false, optional = true },
   },
   config = function()
+    -- AI: Better [A]round/[I]nside textobjects
     -- va)  - [V]isually select [A]round [)]paren
     -- yinq - [Y]ank [I]nside [N]ext [']quote
     -- ci'  - [C]hange [I]nside [']quote
     require('mini.ai').setup { n_lines = 500 }
 
+    -- Surround: Add/delete/replace surroundings (brackets, quotes, etc.)
     -- saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
     -- sd'   - [S]urround [D]elete [']quotes
     -- sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup {}
 
+    -- Pairs: Automatically close pairs (brackets, quotes, etc.)
     require('mini.pairs').setup {}
 
+    -- Move: Move lines and blocks of text
     require('mini.move').setup {}
 
+    -- Trailspace: Highlight trailing whitespaces
     require('mini.trailspace').setup {}
 
-    require('mini.splitjoin').setup {}
+    -- Split and join arguments (reverse <S-J>)
+    require('mini.splitjoin').setup {
+      toggle = 'gS',
+    }
 
+    -- Files: Simple file explorer
     local files = require 'mini.files'
     files.setup {
       content = {
@@ -45,6 +47,7 @@ return {
       },
     }
 
+    -- Sessions: Save and restore sessions
     local sessions = require 'mini.sessions'
     sessions.setup {
       autoread = true,
@@ -52,6 +55,7 @@ return {
       file = '.session.vim',
     }
 
+    -- Icon provider
     local icons = require 'mini.icons'
 
     package.preload['nvim-web-devicons'] = function()
@@ -63,7 +67,7 @@ return {
     icons.setup {}
 
     -- [[ Keymaps ]]
-    -- Open mini files explorer
+    -- File browser
     vim.keymap.set('n', '<C-b>', function()
       if not files.close() then
         files.open()
