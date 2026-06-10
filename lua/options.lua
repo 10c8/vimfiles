@@ -60,3 +60,9 @@ vim.g.inlay_hints_visible = true
 
 -- Views can only be collapsed with the global statusline
 vim.opt.laststatus = 3
+
+-- Save global variables for bufferline ordering across sessions
+vim.opt.sessionoptions:append('globals')
+
+-- Don't save terminal windows in sessions
+vim.opt.sessionoptions:remove('terminal')

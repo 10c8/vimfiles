@@ -4,8 +4,7 @@
 
 return {
   'akinsho/bufferline.nvim',
-  lazy = true,
-  event = 'VimEnter',
+  version = '*',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   config = function()
     local bufferline = require 'bufferline'
@@ -29,13 +28,16 @@ return {
           end
           return s
         end,
-        -- custom_filter = function(_buf_number, _)
-        --   -- Hide the `mini.files` buffer
-        --   return true -- TODO
-        -- end,
+        custom_filter = function(buf_number)
+          local ft = vim.bo[buf_number].filetype
+          -- Hide floaterm buffers
+          if ft == 'floaterm' then
+            return false
+          end
+          return true
+        end,
         show_buffer_close_icons = false,
         show_close_icon = false,
-        sort_by = 'insert_at_end',
       },
     }
 
