@@ -20,6 +20,13 @@ return {
       relative_directions = true,
     })
 
+    -- Skip preview for matches starting with whitespace or an alphabetic
+    -- mid-word character: foobar[baaz] = quux
+    --                     ^    ^^^  ^^ ^ ^  ^
+    leap.opts.preview = function(ch0, ch1, ch2)
+      return not (ch1:match '%s' or (ch0:match '%a' and ch1:match '%a' and ch2:match '%a'))
+    end
+
     -- Highlight colors
     local colors = {
       fg = '#282828',
@@ -35,5 +42,24 @@ return {
     vim.keymap.set({ 'n', 'x', 'o' }, 'f', '<Plug>(leap-forward)', { desc = 'Leap forward' })
     vim.keymap.set({ 'n', 'x', 'o' }, 'F', '<Plug>(leap-backward)', { desc = 'Leap backward' })
     vim.keymap.set({ 'n', 'x', 'o' }, 'gf', '<Plug>(leap-from-window)', { desc = 'Leap (global)' })
+
+    -- Enable the traversal keys to repeat the previous search without
+    -- explicitly invoking Leap
+    do
+      local clever = require('leap.user').with_traversal_keys
+
+      vim.keymap.set({ 'n', 'x', 'o' }, '<cr>', function()
+        leap.leap {
+          ['repeat'] = true,
+          opts = clever('<cr>', '<bs>'),
+        }
+      end)
+      vim.keymap.set({ 'n', 'x', 'o' }, '<bs>', function()
+        leap.leap {
+          ['repeat'] = true,
+          opts = clever('<bs>', '<cr>'),
+        }
+      end)
+    end
   end,
 }
