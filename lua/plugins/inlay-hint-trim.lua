@@ -1,5 +1,6 @@
 return {
   'ray-d-song/inlay-hint-trim.nvim',
+  event = 'LspAttach',
   opts = {
     max_length = 16,
     ellipsis = '…',

@@ -4,7 +4,23 @@
 
 return {
   'voldikss/vim-floaterm',
-  config = function()
+  cmd = { 'FloatermNew', 'FloatermToggle', 'FloatermHide', 'FloatermKill', 'FloatermUpdate', 'FloatermPrev', 'FloatermNext' },
+  keys = {
+    { '<C-Space>', '<CMD>FloatermToggle<CR>', mode = { 'n', 'x' }, desc = '[t]oggle the terminal' },
+    { '<leader>tt', '<CMD>FloatermNew<CR>', mode = { 'n', 'x' }, desc = 'Open a [n]ew terminal' },
+    { '<leader>th', '<CMD>FloatermHide<CR>', mode = { 'n', 'x' }, desc = '[h]ide the terminal' },
+    { '<leader>tk', '<CMD>FloatermKill<CR>', mode = { 'n', 'x' }, desc = '[k]ill a terminal' },
+    { '<leader>ts', '<CMD>FloatermUpdate --wintype=vsplit --position=rightbelow<CR>', mode = { 'n', 'x' }, desc = '[s]plit the terminal' },
+    { '<leader>tf', '<CMD>FloatermUpdate --wintype=float --position=bottomright<CR>', mode = { 'n', 'x' }, desc = '[f]loat the terminal' },
+    { '<leader>t[', '<CMD>FloatermPrev<CR>', mode = { 'n', 'x' }, desc = 'Cycle to the previous terminal' },
+    { '<leader>t]', '<CMD>FloatermNext<CR>', mode = { 'n', 'x' }, desc = 'Cycle to the next terminal' },
+    { '<leader>tg', function()
+      vim.g.floaterm_wintype = 'float'
+      vim.cmd 'FloatermNew --name=Lazygit --title=Lazygit --width=0.9 --height=0.9 --position=center --autoclose=2 lazygit'
+      vim.g.floaterm_wintype = 'split'
+    end, mode = { 'n', 'x' }, desc = 'Open the Lazy[g]it terminal' },
+  },
+  init = function()
     vim.g.floaterm_shell = 'pwsh'
     vim.g.floaterm_title = 'Terminal ($1/$2)'
     vim.g.floaterm_height = 12
@@ -12,21 +28,8 @@ return {
     vim.g.floaterm_autoclose = 0
     vim.g.floaterm_autoinsert = true
     vim.g.floaterm_titleposition = 'center'
-
-    -- [[ Keymaps ]]
-    vim.keymap.set({ 'n', 'x' }, '<C-Space>', '<CMD>FloatermToggle<CR>', { desc = '[t]oggle the terminal' })
-    vim.keymap.set({ 'n', 'x' }, '<leader>tt', '<CMD>FloatermNew<CR>', { desc = 'Open a [n]ew terminal' })
-    vim.keymap.set({ 'n', 'x' }, '<leader>th', '<CMD>FloatermHide<CR>', { desc = '[h]ide the terminal' })
-    vim.keymap.set({ 'n', 'x' }, '<leader>tk', '<CMD>FloatermKill<CR>', { desc = '[k]ill a terminal' })
-    vim.keymap.set({ 'n', 'x' }, '<leader>ts', '<CMD>FloatermUpdate --wintype=vsplit --position=rightbelow<CR>', { desc = '[s]plit the terminal' })
-    vim.keymap.set({ 'n', 'x' }, '<leader>tf', '<CMD>FloatermUpdate --wintype=float --position=bottomright<CR>', { desc = '[f]loat the terminal' })
-    vim.keymap.set({ 'n', 'x' }, '<leader>t[', '<CMD>FloatermPrev<CR>', { desc = 'Cycle to the previous terminal' })
-    vim.keymap.set({ 'n', 'x' }, '<leader>t]', '<CMD>FloatermNext<CR>', { desc = 'Cycle to the next terminal' })
-    vim.keymap.set({ 'n', 'x' }, '<leader>tg', function()
-      vim.g.floaterm_wintype = 'float'
-      vim.cmd 'FloatermNew --name=Lazygit --title=Lazygit --width=0.9 --height=0.9 --position=center --autoclose=2 lazygit'
-      vim.g.floaterm_wintype = 'split'
-    end, { desc = 'Open the Lazy[g]it terminal' })
+  end,
+  config = function()
 
     -- [[ Autocommands ]]
     local group = vim.api.nvim_create_augroup('Floaterm', { clear = true })

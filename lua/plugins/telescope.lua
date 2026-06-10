@@ -19,17 +19,36 @@ return {
     'debugloop/telescope-undo.nvim',
     'aznhe21/actions-preview.nvim',
   },
+  cmd = 'Telescope',
+  keys = {
+    { '<leader><leader>', '<cmd>Telescope buffers<cr>', desc = 'Find existing buffers' },
+    { '<leader>sd', '<cmd>Telescope diagnostics<cr>', desc = '[s]earch [d]iagnostics' },
+    { '<leader>se', '<cmd>Telescope resume<cr>', desc = '[s]earch r[e]sume' },
+    { '<leader>sh', '<cmd>Telescope help_tags<cr>', desc = '[s]earch [h]elp' },
+    { '<leader>sk', '<cmd>Telescope keymaps<cr>', desc = '[s]earch [k]eymaps' },
+    { '<leader>ss', '<cmd>Telescope builtin<cr>', desc = '[s]earch [s]elect Telescope' },
+    { '<leader>st', '<cmd>TodoTelescope<cr>', desc = '[s]earch [t]ODOs' },
+    { '<leader>su', '<cmd>Telescope undo<cr>', desc = '[s]earch [u]ndo history' },
+    { '<leader>sy', '<cmd>Telescope filetypes<cr>', desc = '[s]earch filet[y]pes' },
+    { '<leader>/', function() require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { previewer = false }) end, desc = 'Fuzzy search in current buffer' },
+    { '<leader>s/', function() require('telescope.builtin').live_grep { grep_open_files = true, prompt_title = 'Live Grep in Open Files' } end, desc = 'Fuzzy search in open file[s]' },
+    { '<leader>ca', function() require('actions-preview').code_actions() end, desc = '[c]ode [a]ction' },
+    { '<C-t>', function()
+      vim.cmd 'enew'
+      require('telescope.builtin').find_files {
+        attach_mappings = function(_, map)
+          map('i', '<CR>', function(prompt_bufnr)
+            local entry = require('telescope.actions.state').get_selected_entry()
+            require('telescope.actions').close(prompt_bufnr)
+            vim.cmd('edit ' .. entry.path)
+          end)
+          return true
+        end,
+      }
+    end, desc = 'Edit in a new buffer' },
+  },
   config = function()
     local telescope = require 'telescope'
-    local ts_builtin = require 'telescope.builtin'
-
-    -- [[ Configuration ]]
-    -- see `:help telescope` and `:help telescope.setup()`
-
-    -- local theme = {
-    --   theme = 'ivy',
-    --   layout_config = { height = 0.4 },
-    -- }
 
     telescope.setup {
       defaults = {
@@ -59,53 +78,5 @@ return {
       },
       telescope = require('telescope.themes').get_dropdown { winblend = 10 },
     }
-
-    -- [[ Keymaps ]]
-    -- see `:help telescope.builtin`
-    vim.keymap.set('n', '<leader><leader>', ts_builtin.buffers, { desc = 'Find existing buffers' })
-    -- vim.keymap.set('n', '<leader>s.', ts_builtin.oldfiles, { desc = '[s]earch recent files' })
-    vim.keymap.set('n', '<leader>sd', ts_builtin.diagnostics, { desc = '[s]earch [d]iagnostics' })
-    vim.keymap.set('n', '<leader>se', ts_builtin.resume, { desc = '[s]earch r[e]sume' })
-    vim.keymap.set('n', '<leader>sh', ts_builtin.help_tags, { desc = '[s]earch [h]elp' })
-    vim.keymap.set('n', '<leader>sk', ts_builtin.keymaps, { desc = '[s]earch [k]eymaps' })
-    vim.keymap.set('n', '<leader>ss', ts_builtin.builtin, { desc = '[s]earch [s]elect Telescope' })
-    vim.keymap.set('n', '<leader>st', '<CMD>TodoTelescope<CR>', { desc = '[s]earch [t]ODOs' })
-    vim.keymap.set('n', '<leader>su', '<CMD>Telescope undo<CR>', { desc = '[s]earch [u]ndo history' })
-    vim.keymap.set('n', '<leader>sy', ts_builtin.filetypes, { desc = '[s]earch filet[y]pes' })
-
-    vim.keymap.set('n', '<leader>/', function()
-      ts_builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-        previewer = false,
-      })
-    end, { desc = 'Fuzzy search in current buffer' })
-
-    -- see `:help telescope.builtin.live_grep()`
-    vim.keymap.set('n', '<leader>s/', function()
-      ts_builtin.live_grep {
-        grep_open_files = true,
-        prompt_title = 'Live Grep in Open Files',
-      }
-    end, { desc = 'Fuzzy search in open file[s]' })
-
-    -- Open new buffer and fuzzy find
-    vim.keymap.set('n', '<C-t>', function()
-      vim.cmd 'enew'
-
-      require('telescope.builtin').find_files {
-        attach_mappings = function(_, map)
-          map('i', '<CR>', function(prompt_bufnr)
-            local entry = require('telescope.actions.state').get_selected_entry()
-            require('telescope.actions').close(prompt_bufnr)
-
-            vim.cmd('edit ' .. entry.path)
-          end)
-
-          return true
-        end,
-      }
-    end, { noremap = true, desc = 'Edit in a new buffer' })
-
-    -- Code Actions preview
-    vim.keymap.set('n', '<leader>ca', actions_preview.code_actions, { desc = '[c]ode [a]ction' })
   end,
 }

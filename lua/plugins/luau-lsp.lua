@@ -1,5 +1,6 @@
 return {
   'lopi-py/luau-lsp.nvim',
+  ft = 'luau',
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
     local function is_rojo_project(path)

@@ -5,6 +5,7 @@
 return {
   -- 'folke/todo-comments.nvim',
   '10c8/todo-comments.nvim', -- Until they merge #399
+  event = { 'BufReadPost', 'BufNewFile' },
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
     require('todo-comments').setup {

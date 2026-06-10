@@ -160,9 +160,6 @@ return {
           },
         },
       },
-      -- nim_langserver = {
-      --   nimsuggestPath = vim.fn.exepath 'nimsuggest',
-      -- },
       vtsls = {
         settings = {
           vtsls = {
