@@ -58,8 +58,5 @@ vim.opt.hlsearch = true
 -- Inlay hints
 vim.g.inlay_hints_visible = true
 
--- Disable LSP logs
-vim.lsp.set_log_level 'off'
-
 -- Views can only be collapsed with the global statusline
 vim.opt.laststatus = 3

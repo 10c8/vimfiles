@@ -7,6 +7,7 @@ return {
   dependencies = {
     'rafamadriz/friendly-snippets',
     'onsails/lspkind-nvim',
+    'xzbdmw/colorful-menu.nvim',
   },
   version = '*',
   ---@module 'blink.cmp'
@@ -29,9 +30,21 @@ return {
     },
 
     completion = {
-      documentation = { auto_show = false },
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 700,
+      },
+      ghost_text = {
+        enabled = false,
+        show_with_menu = false,
+      },
       menu = {
+        auto_show = true,
         draw = {
+          columns = {
+            { 'kind_icon' },
+            { 'label', gap = 1 },
+          },
           components = {
             kind_icon = {
               text = function(ctx)
@@ -55,6 +68,14 @@ return {
                 return mini_icon ~= nil and mini_hl or ctx.kind_hl
               end,
             },
+            label = {
+              text = function(ctx)
+                return require('colorful-menu').blink_components_text(ctx)
+              end,
+              highlight = function(ctx)
+                return require('colorful-menu').blink_components_highlight(ctx)
+              end,
+            },
           },
         },
       },
@@ -68,7 +89,7 @@ return {
             return
           end
 
-          -- Lower the priority for Emmet
+          -- Lower priority for Emmet
           return b.client_name == 'emmet_ls'
         end,
         'exact',

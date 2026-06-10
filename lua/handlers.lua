@@ -1,3 +1,4 @@
+-- Ignore Svelte's complaints about inlay hints
 local inlay_hint_o = vim.lsp.handlers['textDocument/inlayHint']
 
 vim.lsp.handlers['textDocument/inlayHint'] = function(err, result, ctx, config)

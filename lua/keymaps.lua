@@ -22,7 +22,6 @@ local keymaps = {
   [']d'] = { 'Go to next [d]iagnostic message', 'n', next_diag_msg },
   ['<leader>e'] = { 'Show diagnostic [e]rror messages', 'n', vim.diagnostic.open_float },
   ['<leader>q'] = { 'Open diagnostic [q]uickfix list', 'n', vim.diagnostic.setloclist },
-  ['<leader>wd'] = { 'Show hovered [d]iagnostic', 'n', '<C-w>d' },
   ['<C-h>'] = { 'Move focus to the left window', 'n', '<C-w><C-h>' },
   ['<C-l>'] = { 'Move focus to the right window', 'n', '<C-w><C-l>' },
   ['<C-j>'] = { 'Move focus to the lower window', 'n', '<C-w><C-j>' },
