@@ -6,14 +6,19 @@ return {
   'folke/lazydev.nvim',
   dependencies = {
     {
-      'hrsh7th/nvim-cmp',
-      opts = function(_, opts)
-        opts.sources = opts.sources or {}
-        table.insert(opts.sources, {
-          name = 'lazydev',
-          group_index = 0,
-        })
-      end,
+      'saghen/blink.cmp',
+      opts = {
+        sources = {
+          default = { 'lazydev' },
+          providers = {
+            lazydev = {
+              name = 'LazyDev',
+              module = 'lazydev.integrations.blink',
+              score_offset = 100,
+            },
+          },
+        },
+      },
     },
   },
   lazy = true,
